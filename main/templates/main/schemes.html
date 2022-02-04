@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+{% for scheme in schemes %}
+{{scheme.name}}<br>
+{% autoescape off %}
+{{scheme.description}}
+{% endautoescape %}
+
+<br>
+{{scheme.eligibility}}
+<br>
+<hr>
+{% endfor %}
+
+{% endblock %}
