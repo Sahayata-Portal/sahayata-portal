@@ -1,0 +1,13 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+Text
+<br>
+<a href="{% url 'page2' %}">Go to page2</a>
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+
+<div class="head">
+  Text
+</div>
+{% endblock %}

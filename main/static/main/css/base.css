@@ -1,0 +1,43 @@
+.navbar{
+  /* border-radius: 10px; */
+  margin-bottom: 15px;
+  /* border:2px solid grey; */
+  background-color: grey;
+  padding: 1px;
+  position: sticky;
+  top: 0px;
+}
+.navbar li{
+  float:left;
+  list-style: none;
+  margin: 13px 20px;
+ 
+}
+.navbar ul{
+  overflow: auto;
+}
+.navbar li a{
+  padding-left: 3px;
+  padding-right: 40px;
+  text-decoration: none;
+  color: white;
+  font-family: 'Lobster', cursive;
+  font-size: 24px;
+}
+
+.search{
+  float: right;
+  color: white;
+  padding: 12px 15px;
+  width:300px;
+}
+.navbar input{
+  border: 2px solid black;
+  border-radius: 14px;
+  padding: 3px 17px;
+  width: 129px;
+}
+.gsc-input
+{
+  background-image: url("https://wallpaperaccess.com/full/1556608.jpg");
+}

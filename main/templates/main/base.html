@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
+  <title>Document</title>
+</head>
+
+<body>
+  <nav class=navbar>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'page2' %}">Page 2</a></li>
+      <li><a href="{% url 'schemes' %}">Schemes</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <div class="search">
+        <script async src="https://cse.google.com/cse.js?cx=000888210889775888983:pqb3ch1ewhg"></script>
+        <div class="gcse-searchbox-only"
+          data-resultsUrl="https://www.google.com/search?q=&rlz=1C1RXQR_enIN930IN930&oq=&aqs=chrome.1.69i59i450l8.45703886j0j15&sourceid=chrome&ie=UTF-8">
+        </div>
+      </div>
+    </ul>
+  </nav>
+  {% block content %}
+  {% endblock %}
+  <br>
+  Footer
+</body>
+
+</html>
