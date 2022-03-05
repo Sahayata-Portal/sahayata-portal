@@ -22,4 +22,5 @@ urlpatterns = [
     path('home', views.HomePage, name='home'),
     path('newname', views.Page2, name='page2'),
     path('schemes', views.SchemePage, name='schemes'),
+    path('ourteam', views.Ourteam, name='ourteam'),
 ]

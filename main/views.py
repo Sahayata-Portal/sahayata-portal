@@ -5,9 +5,6 @@ from main.models import *
 def HomePage(request):
 
 
-
-  
-
   return render(request,"main/home.html")
 
 
@@ -28,3 +25,8 @@ def SchemePage(request):
 
   
   return render(request,"main/schemes.html",{"schemes":schemes})
+
+def Ourteam(request):
+
+  
+  return render(request,"main/ourteam.html")
