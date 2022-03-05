@@ -2,15 +2,19 @@
 
 {% block content %}
 {% for scheme in schemes %}
-{{scheme.name}}<br>
-{% autoescape off %}
-{{scheme.description}}
-{% endautoescape %}
 
-<br>
-{{scheme.eligibility}}
-<br>
-<hr>
+<div class="text-white ms-2">
+    {{scheme.name}}<br>
+    {% autoescape off %}
+    {{scheme.description}}
+    {% endautoescape %}
+
+    Eligibility = {{scheme.eligibility}}
+    <br>
+    <br>
+    <a class="btn btn-success" href="#" role="button">Apply Now</a>
+    <hr>
+</div>
 {% endfor %}
 
 {% endblock %}

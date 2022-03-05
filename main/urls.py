@@ -19,6 +19,7 @@ from main import views
 
 urlpatterns = [
     path('', views.HomePage, name='home'),
+    path('home', views.HomePage, name='home'),
     path('newname', views.Page2, name='page2'),
     path('schemes', views.SchemePage, name='schemes'),
 ]
