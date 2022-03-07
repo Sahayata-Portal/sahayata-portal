@@ -1,0 +1,1 @@
+web: gunicorn CP301G1.wsgi --log-file -
