@@ -21,6 +21,7 @@ urlpatterns = [
     path('', views.HomePage, name='home'),
     path('home', views.HomePage, name='home'),
     path('newname', views.Page2, name='page2'),
+    path('scholarships', views.Scholarships, name='scholarships'),
     path('schemes', views.SchemePage, name='schemes'),
     path('ourteam', views.Ourteam, name='ourteam'),
 ]
