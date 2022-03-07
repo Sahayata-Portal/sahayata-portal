@@ -2,6 +2,7 @@ from django.shortcuts import render
 from main.models import *
 import requests
 from bs4 import BeautifulSoup
+from operator import itemgetter
 
 
 # Create your views here.
@@ -44,6 +45,7 @@ def Scholarships(request):
 
   schemes = []
 
+  count=0
   for i in var:
     name = i.find_next_sibling("div")
     closing_date = name.find_next_sibling("div")
@@ -51,10 +53,11 @@ def Scholarships(request):
     faq = guideline.find_next_sibling("div")
     if name.get_text(strip=True)!="":
       schemes.append([name.get_text(strip=True),
-      closing_date.get_text(strip=True),
+      closing_date.get_text(strip=True).split()[2],
       'https://scholarships.gov.in'+guideline.a.attrs['href'],
-      'https://scholarships.gov.in'+faq.a.attrs['href']])
+      'https://scholarships.gov.in'+faq.a.attrs['href']
+      ,"table-primary"if(closing_date.get_text(strip=True).split()[0]=="Open") else "table-danger"])
 
-
+  schemes=sorted(schemes, key=itemgetter(1))
 
   return render(request,"main/scholarships.html",{"data":schemes})

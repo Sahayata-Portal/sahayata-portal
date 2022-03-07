@@ -1,3 +1,25 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+<table class="table text-white">
+    <thead class="table-warning">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Closing Date</th>
+        <th scope="col">Guidelines</th>
+        <th scope="col">FAQs</th>
+      </tr>
+    </thead>
+    <tbody>
 {% for i in data %}
-{{i.0}}    {{i.1}}   <a href="{{i.2}}">Guidelines</a>   <a href="{{i.3}}">FAQs</a> <br>
+      <tr class="{{i.4}}">
+        <th scope="row">{{i.0}}</th>
+        <td>{{i.1}}</td>
+        <td><a href="{{i.2}}">Guidelines</a></td>
+        <td><a href="{{i.3}}">FAQs</a> <br></td>
+      </tr>
 {% endfor %}
+</tbody>
+</table>
+{% endblock %}
