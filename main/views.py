@@ -2,7 +2,7 @@ from django.shortcuts import render
 from main.models import *
 import requests
 from bs4 import BeautifulSoup
-from operator import itemgetter
+from datetime import datetime
 
 
 # Create your views here.
@@ -35,6 +35,11 @@ def Ourteam(request):
   
   return render(request,"main/ourteam.html")
 
+def myfunc(e):
+  e[1]
+  dt = datetime.strptime(e[1], '%d-%m-%Y')
+  return dt
+
 def Scholarships(request):
 
   data = requests.get(url = 'https://scholarships.gov.in/').text
@@ -58,6 +63,6 @@ def Scholarships(request):
       'https://scholarships.gov.in'+faq.a.attrs['href']
       ,"table-primary"if(closing_date.get_text(strip=True).split()[0]=="Open") else "table-danger"])
 
-  schemes=sorted(schemes, key=itemgetter(1))
+  schemes=sorted(schemes, key=myfunc, reverse=True)
 
   return render(request,"main/scholarships.html",{"data":schemes})
