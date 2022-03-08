@@ -66,3 +66,8 @@ def Scholarships(request):
   schemes=sorted(schemes, key=myfunc, reverse=True)
 
   return render(request,"main/scholarships.html",{"data":schemes})
+
+def about(request):
+
+  
+  return render(request,"main/about.html")

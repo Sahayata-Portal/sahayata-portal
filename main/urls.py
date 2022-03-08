@@ -23,4 +23,5 @@ urlpatterns = [
     path('scholarships', views.Scholarships, name='scholarships'),
     path('schemes', views.SchemePage, name='schemes'),
     path('ourteam', views.Ourteam, name='ourteam'),
+    path('about', views.about, name='about'),
 ]
