@@ -71,3 +71,7 @@ def about(request):
 
   
   return render(request,"main/about.html")
+
+def Employment(request):
+
+  return render(request,"main/Employment.html")
