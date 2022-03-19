@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from main.models import *
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+from django.views.decorators.csrf import csrf_exempt
+import json
+from urllib.parse import quote
+import os
 
 
 # Create your views here.
@@ -75,3 +79,29 @@ def about(request):
 def Employment(request):
 
   return render(request,"main/Employment.html")
+
+@csrf_exempt
+def TextToVoice(request):
+  text = json.loads(request.body).get("text")
+
+  soup = BeautifulSoup(text, "html.parser")
+  text = soup.get_text()
+  text = quote(text)
+
+  url = "https://voicerss-text-to-speech.p.rapidapi.com/"
+  querystring = {"key":os.environ.get("TEXT_TO_SPEECH_KEY")}
+
+  payload = "src="+text
+  payload = payload + "&hl=en-us&v=Mary&r=3&c=mp3&f=44khz_16bit_stereo"
+
+  headers = {
+    'content-type': "application/x-www-form-urlencoded",
+    'x-rapidapi-host': "voicerss-text-to-speech.p.rapidapi.com",
+    'x-rapidapi-key': os.environ.get('X_RAPIDAPI_KEY')
+  }
+
+  response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
+
+  voice = response
+
+  return HttpResponse(voice, content_type='audio/mp3')

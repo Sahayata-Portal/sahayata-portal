@@ -6,24 +6,55 @@
 {% endblock %}
 
 {% block content %}
-<table class="table text-white">
+<button onclick="playelem('#tab');">SPEAK</button>
+<table class="table text-white" id="tab">
     <thead class="table-warning">
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Closing Date</th>
         <th scope="col">Guidelines</th>
         <th scope="col">FAQs</th>
+        <th scope="col">Voice</th>
       </tr>
     </thead>
     <tbody>
 {% for i in data %}
       <tr class="{{i.4}}">
-        <th scope="row">{{i.0}}</th>
-        <td>{{i.1}}</td>
+        <th scope="row" id="name">{{i.0}}</th>
+        <td id="date">{{i.1}}</td>
         <td><a href="{{i.2}}">Guidelines</a></td>
         <td><a href="{{i.3}}">FAQs</a> <br></td>
+        <td><button id="play">SPEAK</button></td>
       </tr>
 {% endfor %}
 </tbody>
 </table>
+{% endblock %}
+
+{% block footer %}
+<script>
+  var audio = new Audio();
+  $(document).on('click', '#play', function (event) {
+    text = "The scheme name is " + $(this).closest('tr').find("#name").text();
+    text = text + " which is closing on " + $(this).closest('tr').find("#date").text();
+    play(text)
+  })
+  function playelem(a){
+    text = $(a).html();
+    play(text);
+  }
+  function play(a) {
+    fetch('/texttovoice', {
+        method: 'POST',
+        body: JSON.stringify({ text:a })
+    }).then( response => {
+      response.blob().then(result=>{
+        
+        audio.pause();
+        audio.src = URL.createObjectURL(result);
+        audio.play();
+      })
+    });
+  }
+  </script>
 {% endblock %}

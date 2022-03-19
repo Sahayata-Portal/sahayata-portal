@@ -25,4 +25,5 @@ urlpatterns = [
     path('ourteam', views.Ourteam, name='ourteam'),
     path('about', views.about, name='about'),
     path('Employment',views.Employment,name='Employment'),
+    path('texttovoice',views.TextToVoice,name='texttovoice'),
 ]
