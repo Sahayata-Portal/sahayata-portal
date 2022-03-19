@@ -42,4 +42,13 @@
 <div>
   <h1 style="color: aliceblue; font-family: Helvetica Neue;">Employment Schemes</h1>
 </div>
+<div style="color:white">
+{% autoescape off %}
+  {% for i in data %}
+  <div style="border: 1px solid white; margin:20px; padding: 5px">
+    {{i}}
+    </div>
+  {%endfor%}
+{% endautoescape %}
+</div>
 {% endblock %}

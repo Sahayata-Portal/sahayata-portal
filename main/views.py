@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from urllib.parse import quote
 import os
+import ssl,urllib
 
 
 # Create your views here.
@@ -54,7 +55,6 @@ def Scholarships(request):
 
   schemes = []
 
-  count=0
   for i in var:
     name = i.find_next_sibling("div")
     closing_date = name.find_next_sibling("div")
@@ -77,8 +77,18 @@ def about(request):
   return render(request,"main/about.html")
 
 def Employment(request):
+  context = ssl._create_unverified_context()
+  data = urllib.request.urlopen("https://eshram.gov.in/employment-schemes", context=context).read()
 
-  return render(request,"main/Employment.html")
+  soup = BeautifulSoup(data, "html.parser")
+
+  var = soup.find_all("div", class_="schemes-text")
+
+  schemes = []
+
+  for i in var:
+    schemes.append(str(i))
+  return render(request,"main/Employment.html",{"data":schemes})
 
 @csrf_exempt
 def TextToVoice(request):
