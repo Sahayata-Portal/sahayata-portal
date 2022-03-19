@@ -45,9 +45,10 @@
 <div style="color:white">
 {% autoescape off %}
   {% for i in data %}
-  <div style="border: 1px solid white; margin:20px; padding: 5px">
+  <div style="border: 1px solid white; margin:20px; padding: 5px" id="{{forloop.counter}}">
     {{i}}
-    </div>
+  </div>
+  <button onclick="playelem('#{{forloop.counter}}');">SPEAK</button>
   {%endfor%}
 {% endautoescape %}
 </div>

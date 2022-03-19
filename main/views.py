@@ -102,7 +102,7 @@ def TextToVoice(request):
   querystring = {"key":os.environ.get("TEXT_TO_SPEECH_KEY")}
 
   payload = "src="+text
-  payload = payload + "&hl=en-us&v=Mary&r=3&c=mp3&f=44khz_16bit_stereo"
+  payload = payload + "&hl=en-us&v=Mary&r=0&c=mp3&f=44khz_16bit_stereo"
 
   headers = {
     'content-type': "application/x-www-form-urlencoded",

@@ -30,31 +30,3 @@
 </tbody>
 </table>
 {% endblock %}
-
-{% block footer %}
-<script>
-  var audio = new Audio();
-  $(document).on('click', '#play', function (event) {
-    text = "The scheme name is " + $(this).closest('tr').find("#name").text();
-    text = text + " which is closing on " + $(this).closest('tr').find("#date").text();
-    play(text)
-  })
-  function playelem(a){
-    text = $(a).html();
-    play(text);
-  }
-  function play(a) {
-    fetch('/texttovoice', {
-        method: 'POST',
-        body: JSON.stringify({ text:a })
-    }).then( response => {
-      response.blob().then(result=>{
-        
-        audio.pause();
-        audio.src = URL.createObjectURL(result);
-        audio.play();
-      })
-    });
-  }
-  </script>
-{% endblock %}
