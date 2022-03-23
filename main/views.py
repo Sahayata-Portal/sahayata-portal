@@ -102,7 +102,7 @@ def social(request):
 
   for i in var:
     schemes.append(str(i))
-  return render(request,"main/Social.html",{"data":schemes})
+  return render(request,"main/social.html",{"data":schemes})
 
 @csrf_exempt
 def TextToVoice(request):
