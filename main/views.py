@@ -90,6 +90,20 @@ def Employment(request):
     schemes.append(str(i))
   return render(request,"main/Employment.html",{"data":schemes})
 
+def social(request):
+  context = ssl._create_unverified_context()
+  data = urllib.request.urlopen("https://eshram.gov.in/social-security-welfare-schemes", context=context).read()
+
+  soup = BeautifulSoup(data, "html.parser")
+
+  var = soup.find_all("div", class_="schemes-text")
+
+  schemes = []
+
+  for i in var:
+    schemes.append(str(i))
+  return render(request,"main/Social.html",{"data":schemes})
+
 @csrf_exempt
 def TextToVoice(request):
   text = json.loads(request.body).get("text")
