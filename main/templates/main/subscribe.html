@@ -1,0 +1,17 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block head %}
+    <title>Subscribe | Sahayata Portal</title>
+{% endblock %}
+
+{% block content %}
+<form action = "" method = "post" class="text-white ms-3">
+    {% csrf_token %}
+    {% for i in form %}
+    {{i.name}} {{i}}
+    <br><br>
+    {% endfor %}
+    <input type="submit" class="btn btn-success" value="Submit">
+</form>
+{% endblock %}

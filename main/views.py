@@ -8,12 +8,13 @@ import json
 from urllib.parse import quote
 import os
 import ssl,urllib
-
+from django.shortcuts import render
+from .forms import SubsForm
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def HomePage(request):
-
-
   return render(request,"main/home.html")
 
 
@@ -129,3 +130,23 @@ def TextToVoice(request):
   voice = response
 
   return HttpResponse(voice, content_type='audio/mp3')
+
+def subscribe(request):
+  context={}
+  context['form']=SubsForm()
+  if request.method == 'POST':
+    if request.POST.get('Name') and request.POST.get('Email'):
+        form=MailForm()
+        form.Name= request.POST.get('Name')
+        form.Email= request.POST.get('Email')
+        if request.POST.get('Scholarship') == 'on':
+          form.Scholarship = True
+        else:
+          form.Scholarship = False
+        if request.POST.get('Social') == 'on':
+          form.Social = True
+        else:
+          form.Social = False
+        form.save()
+        return HttpResponseRedirect("/")
+  return render(request, 'main/subscribe.html', context)

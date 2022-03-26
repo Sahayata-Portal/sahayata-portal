@@ -27,4 +27,5 @@ urlpatterns = [
     path('Employment',views.Employment,name='Employment'),
     path('social',views.social,name='social'),
     path('texttovoice',views.TextToVoice,name='texttovoice'),
+    path('subscribe',views.subscribe,name='subscribe'),
 ]
