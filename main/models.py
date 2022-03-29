@@ -12,4 +12,5 @@ class MailForm(models.Model):
   Email = models.EmailField(max_length = 200)
   Scholarship = models.BooleanField()
   Social = models.BooleanField()
+  Employment = models.BooleanField()
 

@@ -15,17 +15,8 @@ from django.http import HttpResponseRedirect
 
 # Create your views here.
 def HomePage(request):
-  return render(request,"main/home.html")
-
-
-def Page2(request):
-
-  a = ["Yash","Riya","Priyasha","Priyanka"]
-  b = ["abc","def"]
-
-
-  
-  return render(request,"main/page2.html",{"names":a,"det":b})
+  MSG=''
+  return render(request,"main/home.html",{'msg':MSG})
 
 
 def SchemePage(request):
@@ -132,21 +123,16 @@ def TextToVoice(request):
   return HttpResponse(voice, content_type='audio/mp3')
 
 def subscribe(request):
-  context={}
-  context['form']=SubsForm()
+  MSG=''
   if request.method == 'POST':
-    if request.POST.get('Name') and request.POST.get('Email'):
-        form=MailForm()
-        form.Name= request.POST.get('Name')
-        form.Email= request.POST.get('Email')
-        if request.POST.get('Scholarship') == 'on':
-          form.Scholarship = True
-        else:
-          form.Scholarship = False
-        if request.POST.get('Social') == 'on':
-          form.Social = True
-        else:
-          form.Social = False
-        form.save()
-        return HttpResponseRedirect("/")
-  return render(request, 'main/subscribe.html', context)
+    form=SubsForm(request.POST)
+    if form.is_valid():
+      form.save()
+      MSG='Form submitted successfully !'
+      return render(request, 'main/subscribe.html', {'form':SubsForm(), 'msg':MSG})
+    else:
+      MSG='Invalid form submission !'
+      return render(request, 'main/subscribe.html', {'form':SubsForm(), 'msg':MSG})
+  else:
+    return render(request, 'main/subscribe.html', {'form':SubsForm(), 'msg':MSG})
+

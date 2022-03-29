@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block content %}
+<div class="text-warning h5" style="text-align: center;">
+    {{msg}}
+</div>
 <form action = "" method = "post" class="text-white ms-3">
     {% csrf_token %}
     {% for i in form %}
