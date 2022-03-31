@@ -14,3 +14,11 @@ class MailForm(models.Model):
   Social = models.BooleanField()
   Employment = models.BooleanField()
 
+class SchemeScholarships(models.Model):
+  name = models.CharField(max_length=1000)
+  closing_date = models.DateTimeField()
+  guideline = models.URLField()
+  faq = models.URLField()
+  class Meta:
+    verbose_name = "Scheme - Scholarship"
+    verbose_name_plural = "Scheme - Scholarships"

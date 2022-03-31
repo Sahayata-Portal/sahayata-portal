@@ -12,6 +12,7 @@ from django.shortcuts import render
 from .forms import SubsForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from main.fetches import *
 
 # Create your views here.
 def HomePage(request):
@@ -32,34 +33,10 @@ def Ourteam(request):
   
   return render(request,"main/ourteam.html")
 
-def myfunc(e):
-  e[1]
-  dt = datetime.strptime(e[1], '%d-%m-%Y')
-  return dt
 
 def Scholarships(request):
 
-  data = requests.get(url = 'https://scholarships.gov.in/').text
-
-  soup = BeautifulSoup(data, "html.parser")
-
-  var = soup.find_all("div", class_="dotHead")
-
-  schemes = []
-
-  for i in var:
-    name = i.find_next_sibling("div")
-    closing_date = name.find_next_sibling("div")
-    guideline = closing_date.find_next_sibling("div").find_next_sibling("div").find_next_sibling("div")
-    faq = guideline.find_next_sibling("div")
-    if name.get_text(strip=True)!="":
-      schemes.append([name.get_text(strip=True),
-      closing_date.get_text(strip=True).split()[2],
-      'https://scholarships.gov.in'+guideline.a.attrs['href'],
-      'https://scholarships.gov.in'+faq.a.attrs['href']
-      ,"table-primary"if(closing_date.get_text(strip=True).split()[0]=="Open") else "table-danger"])
-
-  schemes=sorted(schemes, key=myfunc, reverse=True)
+  schemes = getScholarships()
 
   return render(request,"main/scholarships.html",{"data":schemes})
 
@@ -136,3 +113,8 @@ def subscribe(request):
   else:
     return render(request, 'main/subscribe.html', {'form':SubsForm(), 'msg':MSG})
 
+def Update(request, schemetype):
+  if schemetype=="scholarship":
+    updateScholarships()
+
+  return HttpResponse("OK")

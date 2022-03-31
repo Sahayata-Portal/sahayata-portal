@@ -1,0 +1,40 @@
+{% load filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% if add %}
+  <center><h1>Schemes Added</h1></center>
+  <table>
+    <tr><th>Scheme Name</th><th>Closing Date</th></tr>
+    {% for i in add %}
+    <tr><td>{{i.name}}</td><td>{% print_date i.closing_date %}</td></tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+  {% if edit %}
+  <center><h1>Schemes Editted</h1></center>
+  <table>
+    <tr><th>Scheme Name</th><th>Closing Date</th></tr>
+    {% for i in edit %}
+    <tr><td>{{i.name}}</td><td>{% print_date i.closing_date %}</td></tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+  {% if delete %}
+  <center><h1>Schemes Deleted</h1></center>
+  <table>
+    <tr><th>Scheme Name</th><th>Closing Date</th></tr>
+    {% for i in delete %}
+    <tr><td>{{i.name}}</td><td>{% print_date i.closing_date %}</td></tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+</body>
+</html>

@@ -11,3 +11,8 @@ class MailAdmin(admin.ModelAdmin):
 
 admin.site.register(Scheme,SchemeAdmin)
 admin.site.register(MailForm,MailAdmin)
+
+class SchemeScholarshipsAdmin(admin.ModelAdmin):
+  list_display = ['id','name','closing_date','guideline','faq']
+
+admin.site.register(SchemeScholarships,SchemeScholarshipsAdmin)

@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load filters %}
 
 {% block head %}
     <title>Scholarships | Sahayata Portal</title>
@@ -19,11 +20,11 @@
     </thead>
     <tbody>
 {% for i in data %}
-      <tr class="{{i.4}}">
-        <th scope="row" id="name">{{i.0}}</th>
-        <td id="date">{{i.1}}</td>
-        <td><a href="{{i.2}}">Guidelines</a></td>
-        <td><a href="{{i.3}}">FAQs</a> <br></td>
+      <tr class="{{i.color}}">
+        <th scope="row" id="name">{{i.name}}</th>
+        <td id="date">{% print_date i.closing_date %}</td>
+        <td><a href="{{i.guideline}}">Guidelines</a></td>
+        <td><a href="{{i.faq}}">FAQs</a> <br></td>
         <td><button id="play">SPEAK</button></td>
       </tr>
 {% endfor %}
