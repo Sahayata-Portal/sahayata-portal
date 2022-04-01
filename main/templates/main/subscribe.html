@@ -11,7 +11,11 @@
 </div>
 <form action = "" method = "post" class="text-white ms-3">
     {% csrf_token %}
-    {% for i in form %}
+    <input name="type" value="{{type}}" hidden="hidden">
+    {% for i in form.hidden_fields %}
+    {{i}}
+    {% endfor %}
+    {% for i in form.visible_fields %}
     {{i.name}} {{i}}
     <br><br>
     {% endfor %}

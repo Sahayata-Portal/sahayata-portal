@@ -9,10 +9,11 @@ from urllib.parse import quote
 import os
 import ssl,urllib
 from django.shortcuts import render
-from .forms import SubsForm
+from .forms import *
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from main.fetches import *
+import random
 
 # Create your views here.
 def HomePage(request):
@@ -101,17 +102,60 @@ def TextToVoice(request):
 
 def subscribe(request):
   MSG=''
+  Type=1
+  form = EmailForm()
   if request.method == 'POST':
-    form=SubsForm(request.POST)
-    if form.is_valid():
-      form.save()
-      MSG='Form submitted successfully !'
-      return render(request, 'main/subscribe.html', {'form':SubsForm(), 'msg':MSG})
+    if request.POST.get('type')=='1':
+      email = request.POST.get("Email")
+      if len(MailForm.objects.filter(Email=email))==0:
+        MailForm(Email=request.POST.get("Email"),  Name=" ").save()
+      cur = MailForm.objects.filter(Email=email)[0]
+      cur.OTP = str(random.randint(100000, 999999))
+      cur.Tries = 0
+      cur.save()
+      send_mail('OTP for Sahayata Portal verification','','Sahayata Portal <'+settings.EMAIL_HOST_USER+'>',[email],html_message='The One Time Password for account verification is <b>'+str(cur.OTP)+'</b>')
+      MSG = 'OTP sent to you registered email'
+      form = OTPForm({'email':email})
+      Type=2
+
+    elif request.POST.get('type')=='2':
+      email=request.POST.get("email")
+      otp=request.POST.get("OTP")
+      try:
+        temp = MailForm.objects.get(Email=email)
+        if otp == temp.OTP:
+          form = SubsForm(instance=temp)
+          Type = 3
+        else:
+          tries = temp.Tries
+          if tries==2:
+            MSG = 'Incorrect OTP entered 3 times !'
+          else:
+            MSG = 'Incorrect OTP ! ' + str(2-tries) + ' tries left'
+            MailForm.objects.filter(Email=email).update(Tries=tries+1)
+            form = OTPForm({'email':request.POST.get("email")})
+            Type=2
+      except:
+        pass
+      
+    elif request.POST.get('type')=='3':
+      email=request.POST.get("Email")
+      otp=request.POST.get("OTP")
+      temp = MailForm.objects.filter(Email=email).filter(OTP=otp)
+      if len(temp)>0:
+        temp=temp[0]
+        thisform = SubsForm(request.POST, instance=temp)
+        if thisform.is_valid():
+          thisform.save()
+          MailForm.objects.filter(Email=email).filter(OTP=otp).update(Active=True)
+        MSG = 'Data updated'
+      else:
+        MSG = 'Error updating data, please try again'
+
     else:
       MSG='Invalid form submission !'
-      return render(request, 'main/subscribe.html', {'form':SubsForm(), 'msg':MSG})
-  else:
-    return render(request, 'main/subscribe.html', {'form':SubsForm(), 'msg':MSG})
+
+  return render(request, 'main/subscribe.html', {'form':form, 'msg':MSG, 'type':Type})
 
 def Update(request, schemetype):
   if schemetype=="scholarship":
