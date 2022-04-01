@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block head %}
-    <title>Home | Sahayata Portal</title>
+<title>Home | Sahayata Portal</title>
 {% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 <div class="container">
     <div class="row mt-3">
-        <div class="col title text-white" >
+        <div class="col title text-white">
             Welcome to Sahayata Portal
         </div>
     </div>
@@ -20,35 +20,88 @@
     </div>
     <br>
     <div style="text-align: center;">
-    <p style="font-size:4em; display: inline; color:rgb(255, 95, 95)">❝</p>
-    <p style="font-size:2em; font-weight: 700; display: inline; color:#3e78db;">
-         आपकी सहायता हमारा कर्तव्य।
-    </p>
-    <p style="font-size:4em; display: inline; color:rgb(255, 95, 95)">❞</p>
+        <p style="font-size:4em; display: inline; color:rgb(255, 95, 95)">❝</p>
+        <p style="font-size:2em; font-weight: 700; display: inline; color:#3e78db;">
+            आपकी सहायता हमारा कर्तव्य।
+        </p>
+        <p style="font-size:4em; display: inline; color:rgb(255, 95, 95)">❞</p>
     </div>
-    <br>
-    <div class="btn-group col-md-12 text-center" role="group" aria-label="Basic example">
-        <a href="{%url 'scholarships'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" >Students</a>
-        <div class="btn-group" role="group">
-            <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-lg active dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false" aria-pressed="true">
-              Labourers
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-              <li><a class="dropdown-item" href="{%url 'Employment'%}">Employment Schemes</a></li>
-              <li><a class="dropdown-item" href="{%url 'social'%}">Social Welfare Schemes</a></li>
-            </ul>
-          </div>
-        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Women</a>
-    </div>
-    <br>
-    <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
-        <a class="btn btn-warning btn-lg" href="{%url 'subscribe'%}" role="button">Subscribe to our mails.</a>
-    </div>
-    <!-- <div class="row mt-3">
-        <div class="col d-grid gap-2 d-md-flex justify-content-md-center">
-            <a class="btn btn-success btn-lg" href="#" role="button">Login</a>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Sign Up</a>
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col d-grid mb-3 mt-3 d-md-flex justify-content-md-center">
+                <a class="btn btn-warning btn-lg" href="{%url 'subscribe'%}" role="button">Subscribe to our mails.</a>
+            </div>
         </div>
+    </div>
+    <div class="container mt-3 justify-content-md-center">
+        <div class="row mt-3 " style="max-width: fit-content; margin: auto;">
+        <div class="col p-3 justify-content-md-center" style="border: 2px solid grey; border-radius: 20px;">
+                <div class="row ms-1 text-white h5 justify-content-md-center">
+                    Click on the appropriate category:
+                </div>
+                <div class="row mt-3 text-white">
+                    <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
+                        <a href="{%url 'scholarships'%}" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Students</a>
+                    </div>
+                    <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-lg dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false" aria-pressed="true">
+                                Labourers
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <li><a class="dropdown-item" href="{%url 'Employment'%}">Employment Schemes</a></li>
+                                <li><a class="dropdown-item" href="{%url 'social'%}">Social Welfare Schemes</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
+                        <a href="#" class="btn btn-primary btn-lg " role="button" aria-pressed="true">Women</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    
+
+
+
+    <!-- <div class="p-3" style="border: 2px solid grey; border-radius: 20px;">
+        <p class="text-white ms-3 h5">
+            Click on the appropriate category: <br>
+        </p>
+        <div class="row mt-3 text-white">
+            <div class="col-2"></div>
+            <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
+                <a href="{%url 'scholarships'%}" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Students</a>
+            </div>
+            <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-lg dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false" aria-pressed="true">
+                        Labourers
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item" href="{%url 'Employment'%}">Employment Schemes</a></li>
+                        <li><a class="dropdown-item" href="{%url 'social'%}">Social Welfare Schemes</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
+                <a href="#" class="btn btn-primary btn-lg " role="button" aria-pressed="true">Women</a>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        
     </div> -->
+
+
+
+
+
+    <br>
 </div>
 {% endblock %}
