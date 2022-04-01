@@ -8,7 +8,7 @@ class Scheme(models.Model):
 
 class MailForm(models.Model):
   # fields of the model
-  Name = models.CharField(max_length = 200, default=" ")
+  Name = models.CharField(max_length = 200, default="")
   Email = models.EmailField(max_length = 200)
   Active = models.BooleanField(default=False)
   OTP = models.CharField(max_length=6)

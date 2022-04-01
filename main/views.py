@@ -108,7 +108,7 @@ def subscribe(request):
     if request.POST.get('type')=='1':
       email = request.POST.get("Email")
       if len(MailForm.objects.filter(Email=email))==0:
-        MailForm(Email=request.POST.get("Email"),  Name=" ").save()
+        MailForm(Email=request.POST.get("Email"),  Name="").save()
       cur = MailForm.objects.filter(Email=email)[0]
       cur.OTP = str(random.randint(100000, 999999))
       cur.Tries = 0
