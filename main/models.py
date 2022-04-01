@@ -8,11 +8,14 @@ class Scheme(models.Model):
 
 class MailForm(models.Model):
   # fields of the model
-  Name = models.CharField(max_length = 200)
+  Name = models.CharField(max_length = 200, default=" ")
   Email = models.EmailField(max_length = 200)
-  Scholarship = models.BooleanField()
-  Social = models.BooleanField()
-  Employment = models.BooleanField()
+  Active = models.BooleanField(default=False)
+  OTP = models.CharField(max_length=6)
+  Scholarship = models.BooleanField(default=False)
+  Social = models.BooleanField(default=False)
+  Employment = models.BooleanField(default=False)
+  Tries = models.IntegerField(default=0)
 
 class SchemeScholarships(models.Model):
   name = models.CharField(max_length=1000)
