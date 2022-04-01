@@ -31,15 +31,25 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Schemes
+                          Students
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="{%url 'scholarships'%}">Scholarships</a></li>
-                          <!-- <li><a class="dropdown-item" href="#">Pension</a></li> -->
+                          <li><a class="dropdown-item" href="{%url 'scholarships'%}">National Scholarships</a></li>
+                          <li><a class="dropdown-item" href="#">International Scholarships</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Labourers
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <li><a class="dropdown-item" href="{%url 'Employment'%}">Employment Schemes</a></li>
                           <li><a class="dropdown-item" href="{%url 'social'%}">Social Welfare Schemes</a></li>
                         </ul>
                       </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Women</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{%url 'about'%}">About</a>
                     </li>
@@ -51,6 +61,7 @@
                     </li> -->
                 </ul>
             </div>
+            <a class="btn btn-primary btn-sm float-right" href="{%url 'subscribe'%}" role="button">Subscribe for all latest updates!</a>
         </div>
     </nav>
     <div class="content-wrap">
