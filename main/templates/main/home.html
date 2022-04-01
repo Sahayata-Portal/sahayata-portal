@@ -19,7 +19,6 @@
         </div>
     </div>
     <br>
-    <br>
     <div style="text-align: center;">
     <p style="font-size:4em; display: inline; color:rgb(255, 95, 95)">❝</p>
     <p style="font-size:2em; font-weight: 700; display: inline; color:#3e78db;">
@@ -27,6 +26,21 @@
     </p>
     <p style="font-size:4em; display: inline; color:rgb(255, 95, 95)">❞</p>
     </div>
+    <br>
+    <div class="btn-group col-md-12 text-center" role="group" aria-label="Basic example">
+        <a href="{%url 'scholarships'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" >Students</a>
+        <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-lg active dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false" aria-pressed="true">
+              Labourers
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <li><a class="dropdown-item" href="{%url 'Employment'%}">Employment Schemes</a></li>
+              <li><a class="dropdown-item" href="{%url 'social'%}">Social Welfare Schemes</a></li>
+            </ul>
+          </div>
+        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Women</a>
+    </div>
+    <br>
     <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
         <a class="btn btn-warning btn-lg" href="{%url 'subscribe'%}" role="button">Subscribe to our mails.</a>
     </div>
