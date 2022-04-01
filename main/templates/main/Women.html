@@ -1,0 +1,29 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block head %}
+    <title>Schemes for women | Sahayata Portal</title>
+{% endblock %}
+
+{% block content %}
+{% autoescape off %}
+ <!---- {% for i in data %}
+  <div style="border: 1px solid white; margin:20px; padding: 5px" id="{{forloop.counter}}">
+    {{i}}
+  </div>
+  <button onclick="playelem('#{{forloop.counter}}');">SPEAK</button>
+  {%endfor%}
+--->
+<table class="text-white">
+  {% for i in data %}
+      <tr class="{{i}}">
+        <th scope="row" id="name">{{i.0}}</th>
+        
+        <td><a href="{{i.1}}">links</a></td>
+        
+        <td><button id="play">SPEAK</button></td>
+      </tr>
+{% endfor %}
+{% endautoescape %}
+    </table>
+{% endblock %}

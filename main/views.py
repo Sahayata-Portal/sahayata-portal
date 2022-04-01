@@ -162,3 +162,19 @@ def Update(request, schemetype):
     updateScholarships()
 
   return HttpResponse("OK")
+
+  # Create your views here.
+def Women(request):
+  context = ssl._create_unverified_context()
+  data = urllib.request.urlopen("https://wcd.nic.in/schemes-listing/2405", context=context).read()
+
+  soup = BeautifulSoup(data, "html.parser")
+
+  var = soup.find_all("div", class_="item-list")[0].find_all("span",class_="field-content")
+  
+  schemes = []
+
+  for i in var:
+    name=i.find_all("a")[0]
+    schemes.append([name.get_text(strip=True),'https://wcd.nic.in'+name.attrs['href']])
+  return render(request,"main/Women.html",{"data":schemes})
