@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 class Scheme(models.Model):
@@ -8,6 +9,7 @@ class Scheme(models.Model):
 
 class MailForm(models.Model):
   # fields of the model
+  UUID = models.UUIDField(default = uuid.uuid4, editable = False)
   Name = models.CharField(max_length = 200, default="")
   Email = models.EmailField(max_length = 200)
   Active = models.BooleanField(default=False)

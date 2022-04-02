@@ -7,7 +7,7 @@ class SchemeAdmin(admin.ModelAdmin):
 
 
 class MailAdmin(admin.ModelAdmin):
-  list_display = ['Name', 'Email', 'Scholarship','Social','Employment']
+  list_display = ['UUID','Name', 'Email', 'Scholarship','Social','Employment']
 
 admin.site.register(Scheme,SchemeAdmin)
 admin.site.register(MailForm,MailAdmin)

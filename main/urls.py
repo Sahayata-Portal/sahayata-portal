@@ -27,6 +27,7 @@ urlpatterns = [
     path('social',views.social,name='social'),
     path('texttovoice',views.TextToVoice,name='texttovoice'),
     path('subscribe',views.subscribe,name='subscribe'),
+    path('unsubscribe/<str:uuid>',views.Unsubscribe,name='unsubscribe'),
     path('update/<str:schemetype>',views.Update, name='update'),
     path('Women',views.Women,name='Women'),
 ]

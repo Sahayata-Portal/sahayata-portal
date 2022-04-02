@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .wrap{
+      width: 95%;
+      max-width: 650px;
+      display: block;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      margin: auto;
+      padding: 40px 15px;
+    }
+    .head{
+      font-size: 26px;
+      font-weight: 700;
+      color: #1e54b4;
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
+    .logo{
+      width:100px;
+      display: block;
+      margin: auto;
+    }
+    .otp{
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 30px;
+      color: #e76161;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <img src="https://sahayata-portal.herokuapp.com/static/main/images/logo.png" class="logo">
+    <br>
+    <div class="head">Prove your identity</div>
+    <br>
+    Hello,<br>
+    You are receiving this mail because you have requested to register on <a href="https://sahayata-portal.herokuapp.com/">sahayata-portal.herokuapp.com</a>.
+    <br><br>
+    The One Time Password (OTP) for account verification is:<br><br>
+    <div class="otp"><b>{{otp}}</b></div>
+    <br>
+  </div>
+</body>
+</html>

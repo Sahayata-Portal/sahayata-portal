@@ -6,19 +6,112 @@
 {% endblock %}
 
 {% block content %}
+<br>
 <div class="text-warning h5" style="text-align: center;">
     {{msg}}
 </div>
-<form action = "" method = "post" class="text-white ms-3">
-    {% csrf_token %}
-    <input name="type" value="{{type}}" hidden="hidden">
-    {% for i in form.hidden_fields %}
-    {{i}}
-    {% endfor %}
-    {% for i in form.visible_fields %}
-    {{i.name}} {{i}}
-    <br><br>
-    {% endfor %}
-    <input type="submit" class="btn btn-success" value="Submit">
-</form>
+<br>
+<style>
+    .form-head{
+        text-align: center;
+        color: rgb(1, 232, 185);
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .form{
+        padding: 30px 15px;
+        display: block;
+        width: 95%;
+        max-width: 700px;
+        margin: auto;
+        border: 2px solid rgb(174, 174, 174);
+        box-shadow: 0px 0px 12px 1px #aaa;
+        border-radius: 10px;
+    }
+    input{
+        background-color: transparent;
+        outline: none;
+        border:0;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 10px 0px;
+        padding: 4px 10px;
+        color: #ddd;
+    }
+    input:focus{
+        border-bottom: 1px solid white;
+    }
+    input[type=submit]{
+        width: 200px;
+        display: block;
+        margin: auto;
+    }
+    .label{
+        color: #ddd;
+        font-size: 1.1em;
+    }
+    input[type=checkbox]{
+        appearance: none;
+        background-color: #fff;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 20px;
+        height: 20px;
+        border-radius: 3px;
+        display: grid;
+        place-content: center;
+    }
+    input[type="checkbox"]::before {
+        content: "";
+        width: 0.65em;
+        height: 0.65em;
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        transform: scale(0);
+        transform-origin: bottom left;
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em var(--form-control-color);
+        background-color: CanvasText;
+    }
+    input[type="checkbox"]:checked::before {
+        transform: scale(1);
+    }
+    .check {
+        font-family: system-ui, sans-serif;
+        line-height: 1.1;
+        display: grid;
+        grid-template-columns: 1em auto;
+        gap: 1em;
+    }
+</style>
+<div class="form">
+    <div class="form-head">
+        {{form_head}}
+    </div>
+    <br>
+    <form action = "" method = "post" class="text-white">
+        {% csrf_token %}
+        <input name="type" value="{{type}}" hidden="hidden">
+        {% for i in form.hidden_fields %}
+        {{i}}
+        {% endfor %}
+        {% for i in form.visible_fields %}
+        
+        {% if i.field.widget.input_type == 'checkbox' %}
+
+ 
+        <div class="check">
+            {{i}}<label for="id_{{i.name}}" class="label">{{i.name}}</label>
+        </div>
+        <br>
+        {% else %}
+        <font class="label">{{i.name}}</font><br>{{i}}<br><br>
+        <!-- <br><br> -->
+        {% endif %}
+        
+        {% endfor %}
+        <input type="submit" class="btn btn-success" value="Submit">
+    </form>
+</div>
 {% endblock %}

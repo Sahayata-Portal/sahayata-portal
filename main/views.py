@@ -14,6 +14,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from main.fetches import *
 import random
+from django.template.loader import render_to_string
 
 # Create your views here.
 def HomePage(request):
@@ -113,8 +114,9 @@ def subscribe(request):
       cur.OTP = str(random.randint(100000, 999999))
       cur.Tries = 0
       cur.save()
-      send_mail('OTP for Sahayata Portal verification','','Sahayata Portal <'+settings.EMAIL_HOST_USER+'>',[email],html_message='The One Time Password for account verification is <b>'+str(cur.OTP)+'</b>')
-      MSG = 'OTP sent to you registered email'
+      mail = render_to_string('main/otp.html', {'otp':str(cur.OTP)})
+      send_mail('OTP for Sahayata Portal verification','','Sahayata Portal <'+settings.EMAIL_HOST_USER+'>',[email],html_message=mail)
+      MSG = 'OTP sent to '+email
       form = OTPForm({'email':email})
       Type=2
 
@@ -155,7 +157,21 @@ def subscribe(request):
     else:
       MSG='Invalid form submission !'
 
-  return render(request, 'main/subscribe.html', {'form':form, 'msg':MSG, 'type':Type})
+  return render(request, 'main/subscribe.html', {'form':form, 'msg':MSG, 'type':Type, 'form_head':'Subscribe to email notifications'})
+
+def Unsubscribe(request, uuid):
+  obj = []
+  try:
+    obj = MailForm.objects.filter(UUID=uuid)
+  except:
+    pass
+  if len(obj)==0:
+    return render(request,"main/unsubscribe.html",{"msg":'You are already unsubscribed'})
+  if request.method == 'POST':
+    obj.delete()
+    return render(request,"main/unsubscribe.html",{"msg":'You are successfully unsubscribed'})
+  
+  return render(request,"main/unsubscribe.html",{"ask":1})
 
 def Update(request, schemetype):
   if schemetype=="scholarship":

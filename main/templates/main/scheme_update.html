@@ -7,34 +7,76 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .table-wrap{
+      width: 95%;
+      max-width: 800px;
+      display: block;
+      margin: auto;
+    }
+    table{
+      border-spacing:0;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td,th{
+      padding: 10px;
+      margin: 0;
+    }
+    tr{
+      border-bottom: 1px solid #ddd;
+    }
+    .th{
+      background-color: #3d89f7;
+      color: #fff;
+      text-align: left;
+    }
+    .uns{
+      display: block;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
   {% if add %}
   <center><h1>Schemes Added</h1></center>
+  <div class="table-wrap">
   <table>
-    <tr><th>Scheme Name</th><th>Closing Date</th></tr>
+    <tr class="th"><th>Scheme Name</th><th>Closing Date</th></tr>
     {% for i in add %}
     <tr><td>{{i.name}}</td><td>{% print_date i.closing_date %}</td></tr>
     {% endfor %}
   </table>
+  </div>
   {% endif %}
   {% if edit %}
   <center><h1>Schemes Editted</h1></center>
+  <div class="table-wrap">
   <table>
-    <tr><th>Scheme Name</th><th>Closing Date</th></tr>
+    <tr class="th"><th>Scheme Name</th><th>Closing Date</th></tr>
     {% for i in edit %}
     <tr><td>{{i.name}}</td><td>{% print_date i.closing_date %}</td></tr>
     {% endfor %}
   </table>
+  </div>
   {% endif %}
   {% if delete %}
   <center><h1>Schemes Deleted</h1></center>
+  <div class="table-wrap">
   <table>
-    <tr><th>Scheme Name</th><th>Closing Date</th></tr>
+    <tr class="th"><th>Scheme Name</th><th>Closing Date</th></tr>
     {% for i in delete %}
     <tr><td>{{i.name}}</td><td>{% print_date i.closing_date %}</td></tr>
     {% endfor %}
   </table>
+  </div>
   {% endif %}
+  <br><br>
+  <div class="uns">
+  You are receiving this email because your email id is registered with us. Stop receiving the emails by clicking on <a href="{{uns}}">Unsubscribe</a>.
+  </div>
 </body>
 </html>

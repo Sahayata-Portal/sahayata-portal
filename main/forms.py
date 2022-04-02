@@ -8,9 +8,10 @@ class EmailForm(forms.ModelForm):
     class Meta:
         model = MailForm
         fields = ["Email"]
+        widgets = {'Email': forms.TextInput(attrs={'placeholder': 'Enter your email'})}
 
 class OTPForm(forms.Form):
-    OTP = forms.CharField(max_length=6)
+    OTP = forms.CharField(max_length=6, widget=forms.TextInput(attrs={'placeholder': 'Enter the OTP'}))
     email = forms.CharField(max_length=200, widget=forms.HiddenInput())
 
 class SubsForm(forms.ModelForm):
@@ -19,4 +20,5 @@ class SubsForm(forms.ModelForm):
         model = MailForm
         fields = ["Email","Name","Scholarship","Social","Employment","OTP"]
         widgets = {'Email': forms.TextInput(attrs={'readonly': True}),
-        'OTP': forms.widgets.HiddenInput()}
+        'OTP': forms.widgets.HiddenInput(),
+        'Name': forms.TextInput(attrs={'placeholder': 'Enter your name'})}

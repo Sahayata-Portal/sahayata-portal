@@ -101,9 +101,9 @@ def updateScholarships():
       elif i[0]=='delete':
         delete.append(i[1])
 
-    subject = 'Scholarships Schemes Changed'
-    html_message = render_to_string('main/scheme_update.html', {'add':add, 'edit':edit, 'delete':delete})
+    subject = 'Scholarships Schemes Updated'
     from_email = 'Sahayata Portal <'+settings.EMAIL_HOST_USER+'>'
-    to = [i.Email for i in MailForm.objects.filter(Scholarship=True).filter(Active=True)]
+    to = [[i.Email,str(i.UUID)] for i in MailForm.objects.filter(Scholarship=True).filter(Active=True)]
     for t in to:
-      send_mail(subject, '', from_email, [t], html_message=html_message)
+      html_message = render_to_string('main/scheme_update.html', {'add':add, 'edit':edit, 'delete':delete, 'uns':"https://sahayata-portal.herokuapp.com/unsubscribe/"+t[1]})
+      send_mail(subject, '', from_email, [t[0]], html_message=html_message)
