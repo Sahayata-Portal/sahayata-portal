@@ -34,7 +34,7 @@ def getScholarships():
       "closing_date":dt,
       "guideline":'https://scholarships.gov.in'+guideline.a.attrs['href'],
       "faq":'https://scholarships.gov.in'+faq.a.attrs['href'],
-      "color":"text-success"if(closing_date.get_text(strip=True).split()[0]=="Open") else "text-danger",
+      "color":"text-green"if(closing_date.get_text(strip=True).split()[0]=="Open") else "text-red",
       "closing_date_print":dt.strftime("%d-%b-%Y")})
 
   schemes=sorted(schemes, key=myfunc, reverse=True)
