@@ -4,28 +4,34 @@
 
 {% block head %}
     <title>Scholarships | Sahayata Portal</title>
+    <link rel="stylesheet" href="{% static 'main/css/scholarships.css' %}">
 {% endblock %}
 
 {% block content %}
 <!-- <button onclick="playelem('#tab');">SPEAK</button> -->
-<table class="table text-white" id="tab">
-    <thead class="table-warning">
+<div>
+  <h1 style="color: aliceblue; font-family: Helvetica Neue; text-align: center;">National Scholarships</h1>
+</div>
+<br>
+<table class="table text-white" id="tab" style="border-top:2px solid white">
+    <thead class="text-warning">
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Closing Date</th>
-        <th scope="col">Guidelines</th>
-        <th scope="col">FAQs</th>
-        <th scope="col">Voice</th>
+        <th scope="col" class="head_row">Name</th>
+        <th scope="col" class="head_row">Closing Date</th>
+        <th scope="col" class="head_row">Guidelines</th>
+        <th scope="col" class="head_row">FAQs</th>
+        <th scope="col" class="head_row">Voice</th>
       </tr>
     </thead>
     <tbody>
 {% for i in data %}
       <tr class="{{i.color}}">
-        <th scope="row" id="name">{{i.name}}</th>
-        <td id="date">{% print_date i.closing_date %}</td>
-        <td><a href="{{i.guideline}}">Guidelines</a></td>
-        <td><a href="{{i.faq}}">FAQs</a> <br></td>
-        <td><button id="play">SPEAK</button></td>
+        <td scope="row" id="name" class="name_col">{{i.name}}</th>
+        <td id="date" class="small_col">{% print_date i.closing_date %}</td>
+        <td class="small_col"><a href="{{i.guideline}}" class="btn btn-outline-warning btn-sm" role="button" aria-pressed="true">Click Here</a></td>
+        <td class="small_col"><a href="{{i.faq}}" class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true">Click Here</a></td>
+        <!-- <td style="width:10%; text-align:center;"><a href="{{i.faq}}">FAQs</a> <br></td> -->
+        <td class="small_col"><button id="play" class="btn btn-outline-light btn-sm" >SPEAK</button></td>
       </tr>
 {% endfor %}
 </tbody>

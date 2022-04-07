@@ -18,8 +18,7 @@ from django.template.loader import render_to_string
 
 # Create your views here.
 def HomePage(request):
-  MSG=''
-  return render(request,"main/home.html",{'msg':MSG})
+  return render(request,"main/home.html")
 
 
 def SchemePage(request):
