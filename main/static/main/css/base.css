@@ -13,3 +13,24 @@ footer{
   text-align: center;
   padding: 20px;
 } 
+.hide{
+  display: none;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.7);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.hide .text{
+  display: table-cell;
+  color:white;
+  font-size: 30px;
+  text-align: center;
+  vertical-align: middle;
+  width: 100vw;
+  height: 100vh;
+}

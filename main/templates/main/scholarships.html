@@ -26,12 +26,11 @@
     <tbody>
 {% for i in data %}
       <tr>
-        <td scope="row" id="name" class="name_col {{i.color}}">{{i.name}}</th>
-        <td id="date" class="small_col  {{i.color}}">{% print_date i.closing_date %}</td>
-        <td class="small_col"><a href="{{i.guideline}}" class="btn btn-outline-warning btn-sm" role="button" aria-pressed="true">Click Here</a></td>
-        <td class="small_col"><a href="{{i.faq}}" class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true">Click Here</a></td>
-        <!-- <td style="width:10%; text-align:center;"><a href="{{i.faq}}">FAQs</a> <br></td> -->
-        <td class="small_col"><button id="play" class="btn btn-outline-light btn-sm" >SPEAK</button></td>
+        <td scope="row" id="{{forloop.counter}}_name" class="name_col {{i.color}}">{{i.name}}</th>
+        <td id="{{forloop.counter}}_date" class="small_col  {{i.color}}">{% print_date i.closing_date %}</td>
+        <td class="small_col"><a href="{{i.guideline}}" class="btn btn-outline-warning btn-sm" role="button" aria-pressed="true" target="_blank">Click Here</a></td>
+        <td class="small_col"><a href="{{i.faq}}" class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true" target="_blank">Click Here</a></td>
+        <td class="small_col"><button onclick="playcustom('The scheme name is ','#{{forloop.counter}}_name',' which is closing on ','#{{forloop.counter}}_date','. Click here for opening guidelines and click here for knowing FAQs.');" class="btn btn-outline-light btn-sm" >SPEAK</button></td>
       </tr>
 {% endfor %}
 </tbody>

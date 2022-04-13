@@ -16,6 +16,7 @@
 </head>
 
 <body class="bg-dark">
+    <div class="hide"><div class="text">Loading...</div></div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="{% static 'main/images/logo.png' %}" alt="logo" width="60px"></a>
@@ -85,16 +86,26 @@
     <!-- Text To Speech -->
     <script>
         var audio = new Audio();
-        $(document).on('click', '#play', function (event) {
-            text = "The scheme name is " + $(this).closest('tr').find("#name").text();
-            text = text + " which is closing on " + $(this).closest('tr').find("#date").text();
-            play(text);
-        })
         function playelem(a){
             text = $(a).html();
             play(text);
         }
+        function playcustom(){
+            text = '';
+            for (i=0 ; i<arguments.length ; i++){
+                if (i&1)
+                    text+=$(arguments[i]).html();
+                else
+                    text+=arguments[i];
+            }
+            play(text);
+        }
         function play(a) {
+            $('.hide').css('display','block');
+            $('body').css('overflow-y','hidden');
+            setTimeout(()=>{
+                $('.hide').css('opacity','0.7');
+            },10);
             fetch('/texttovoice', {
                 method: 'POST',
                 body: JSON.stringify({ text:a })
@@ -103,6 +114,11 @@
                     audio.pause();
                     audio.src = URL.createObjectURL(result);
                     audio.play();
+                    $('.hide').css('opacity','0');
+                    setTimeout(()=>{
+                        $('body').css('overflow-y','auto');
+                        $('.hide').css('display','none');
+                    },210);
                 })
             });
         }
