@@ -22,20 +22,24 @@ def getScholarships():
   schemes = []
 
   for i in var:
-    name = i.find_next_sibling("div")
-    closing_date = name.find_next_sibling("div")
-    guideline = closing_date.find_next_sibling("div").find_next_sibling("div").find_next_sibling("div")
-    faq = guideline.find_next_sibling("div")
+    try:
+      name = i.find_next_sibling("div")
+      closing_date = name.find_next_sibling("div")
+      guideline = closing_date.find_next_sibling("div").find_next_sibling("div").find_next_sibling("div")
+      faq = guideline.find_next_sibling("div")
 
-    if name.get_text(strip=True)!="":
-      dt = datetime.strptime(closing_date.get_text(strip=True).split()[2], '%d-%m-%Y').replace(tzinfo=pytz.UTC)
+      if name.get_text(strip=True)!="":
+        
+        dt = datetime.strptime(closing_date.get_text(strip=True).split()[2], '%d-%m-%Y').replace(tzinfo=pytz.UTC)
 
-      schemes.append({"name":name.get_text(strip=True),
-      "closing_date":dt,
-      "guideline":'https://scholarships.gov.in'+guideline.a.attrs['href'],
-      "faq":'https://scholarships.gov.in'+faq.a.attrs['href'],
-      "color":"text-green"if(closing_date.get_text(strip=True).split()[0]=="Open") else "text-red",
-      "closing_date_print":dt.strftime("%d-%b-%Y")})
+        schemes.append({"name":name.get_text(strip=True),
+        "closing_date":dt,
+        "guideline":'https://scholarships.gov.in'+guideline.a.attrs['href'],
+        "faq":'https://scholarships.gov.in'+faq.a.attrs['href'],
+        "color":"text-green"if(closing_date.get_text(strip=True).split()[0]=="Open") else "text-red",
+        "closing_date_print":dt.strftime("%d-%b-%Y")})
+    except:
+      pass
 
   schemes=sorted(schemes, key=myfunc, reverse=True)
 
