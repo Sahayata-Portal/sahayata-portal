@@ -146,9 +146,8 @@ def subscribe(request):
       if len(temp)>0:
         temp=temp[0]
         thisform = SubsForm(request.POST, instance=temp)
-        if thisform.is_valid():
-          thisform.save()
-          MailForm.objects.filter(Email=email).filter(OTP=otp).update(Active=True)
+        thisform.save()
+        MailForm.objects.filter(Email=email).filter(OTP=otp).update(Active=True)
         MSG = 'Data updated'
       else:
         MSG = 'Error updating data, please try again'
