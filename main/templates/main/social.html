@@ -43,12 +43,49 @@
   <div style="color:white">
 <div style="color:white">
     {% autoescape off %}
-      {% for i in data %}
-      <div style="border: 1px solid white; margin:20px; padding: 5px" id="{{forloop.counter}}">
-        {{i}}
+    {% for i in data %}
+    <div style="border: 1px solid white; margin:20px; padding: 10px 25px" id="{{forloop.counter}}">
+      <div class="row">
+        <div class="col">
+          <div class="row mb-2" style="font-size: 1.2em; color:rgb(132, 239, 255)">
+            <b>{{i.title}}</b>
+          </div>
+          {% if i.desc1 %}
+          <div class="row">
+            <div class="col-md-12">
+              <ul>
+                {% for ii in i.desc1 %}
+                  <li>{{ii}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          {% endif %}
+          <div class="row">
+            <div class="col-md-6">
+              <p style="margin-bottom: 10px; color: rgb(204, 255, 0)">{{i.head2}}</p>
+              <ul>
+                {% for ii in i.desc2 %}
+                  <li>{{ii}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <p style="margin-bottom: 10px; color: rgb(204, 255, 0)">{{i.head3}}</p>
+              <ul>
+                {% for ii in i.desc3 %}
+                  <li>{{ii}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <button onclick="playelem('#{{forloop.counter}}');" class="btn btn-outline-light btn-sm m-auto" style="width: 100px;">SPEAK <i class="fa-solid fa-volume-high"></i></button>
+          </div>
+        </div>
       </div>
-      <button onclick="playelem('#{{forloop.counter}}');" class="btn btn-outline-light btn-sm ms-3 mb-3" >SPEAK</button>
-      {%endfor%}
+    </div>
+    {%endfor%}
     {% endautoescape %}
     </div>
 {% endblock %}

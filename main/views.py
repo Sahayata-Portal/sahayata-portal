@@ -47,31 +47,15 @@ def about(request):
   return render(request,"main/about.html")
 
 def Employment(request):
-  context = ssl._create_unverified_context()
-  data = urllib.request.urlopen("https://eshram.gov.in/employment-schemes", context=context).read()
 
-  soup = BeautifulSoup(data, "html.parser")
-
-  var = soup.find_all("div", class_="schemes-text")
-
-  schemes = []
-
-  for i in var:
-    schemes.append(str(i))
+  schemes = getEmployment()
+  
   return render(request,"main/Employment.html",{"data":schemes})
 
 def social(request):
-  context = ssl._create_unverified_context()
-  data = urllib.request.urlopen("https://eshram.gov.in/social-security-welfare-schemes", context=context).read()
 
-  soup = BeautifulSoup(data, "html.parser")
+  schemes = getSocial()
 
-  var = soup.find_all("div", class_="schemes-text")
-
-  schemes = []
-
-  for i in var:
-    schemes.append(str(i))
   return render(request,"main/social.html",{"data":schemes})
 
 @csrf_exempt
@@ -179,16 +163,7 @@ def Update(request, schemetype):
 
   # Create your views here.
 def Women(request):
-  context = ssl._create_unverified_context()
-  data = urllib.request.urlopen("https://wcd.nic.in/schemes-listing/2405", context=context).read()
-
-  soup = BeautifulSoup(data, "html.parser")
-
-  var = soup.find_all("div", class_="item-list")[0].find_all("span",class_="field-content")
   
-  schemes = []
+  schemes = getWomen()
 
-  for i in var:
-    name=i.find_all("a")[0]
-    schemes.append([name.get_text(strip=True),'https://wcd.nic.in'+name.attrs['href']])
   return render(request,"main/Women.html",{"data":schemes})

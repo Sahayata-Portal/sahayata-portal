@@ -20,7 +20,7 @@
      <tr  style="border: 2px solid gray;border-radius: 10px; margin:25px; padding: 5px; height: 100px">
         <td class="ps-2" style="width:70%" scope="row" id="{{forloop.counter}}_name">{{i.0}}</td>
         <td style="width:20%"><a href="{{i.1}}" class="btn btn-outline-warning btn-sm " role="button" aria-pressed="true" id="{{forloop.counter}}_but" target="_blank">Click here to know more</a></td>
-        <td style="width:10%"><button onclick="playcustom('The scheme name is ','#{{forloop.counter}}_name','. ','#{{forloop.counter}}_but');" class="btn btn-outline-light">SPEAK</button></td>
+        <td style="width:10%"><button onclick="playcustom('The scheme name is ','#{{forloop.counter}}_name','. ','#{{forloop.counter}}_but');" class="btn btn-outline-light">SPEAK <i class="fa-solid fa-volume-high"></i></button></td>
       </tr>
 {% endfor %}
 {% endautoescape %}

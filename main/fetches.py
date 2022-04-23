@@ -7,6 +7,7 @@ import pytz
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+import ssl,urllib
 
 def myfunc(e):
   return e['closing_date']
@@ -111,3 +112,70 @@ def updateScholarships():
     for t in to:
       html_message = render_to_string('main/scheme_update.html', {'add':add, 'edit':edit, 'delete':delete, 'uns':"https://sahayata-portal.herokuapp.com/unsubscribe/"+t[1]})
       send_mail(subject, '', from_email, [t[0]], html_message=html_message)
+
+def getEmployment():
+  context = ssl._create_unverified_context()
+  data = urllib.request.urlopen("https://eshram.gov.in/employment-schemes", context=context).read()
+
+  soup = BeautifulSoup(data, "html.parser")
+
+  var = soup.find_all("div", class_="schemes-text")
+
+  schemes = []
+
+  for i in var:
+    x=i.find_all("div", class_="about-li")
+    schemes.append({
+      'title' : i.find("h5").get_text(strip=True),
+      'head1' : 'Eligiblity',
+      'desc1' : [li.get_text(strip=True) for li in x[0].find_all("li")],
+      'head2' : "Benefits",
+      'desc2' : [li.get_text(strip=True) for li in x[1].find_all("li")]
+    })
+  
+  return schemes
+
+def getSocial():
+  context = ssl._create_unverified_context()
+  data = urllib.request.urlopen("https://eshram.gov.in/social-security-welfare-schemes", context=context).read()
+
+  soup = BeautifulSoup(data, "html.parser")
+
+  var = soup.find_all("div", class_="schemes-text")
+
+  schemes = []
+
+  for i in var:
+    x=[t.find("div", class_="about-li") for t in i.find_all("div", class_="col-md-6")]
+    temp = {
+      'title' : i.find("h5").get_text(strip=True),
+      'head2' : 'Eligiblity',
+      'desc2' : [li.get_text(strip=True) for li in x[0].find_all("li")],
+      'head3' : "Benefits",
+      'desc3' : [li.get_text(strip=True) for li in x[1].find_all("li")]
+    }
+
+    try:
+      temp['desc1'] = [li.get_text(strip=True) for li in i.find("div", class_="col-md-12").find("div", class_="about-li").find_all("li")]
+    except:
+      temp['desc1'] = None
+
+    schemes.append(temp)
+  
+  return schemes
+
+def getWomen():
+  context = ssl._create_unverified_context()
+  data = urllib.request.urlopen("https://wcd.nic.in/schemes-listing/2405", context=context).read()
+
+  soup = BeautifulSoup(data, "html.parser")
+
+  var = soup.find_all("div", class_="item-list")[0].find_all("span",class_="field-content")
+  
+  schemes = []
+
+  for i in var:
+    name=i.find_all("a")[0]
+    schemes.append([name.get_text(strip=True),'https://wcd.nic.in'+name.attrs['href']])
+  
+  return schemes
