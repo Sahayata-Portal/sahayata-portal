@@ -27,3 +27,11 @@ class SchemeScholarships(models.Model):
   class Meta:
     verbose_name = "Scheme - Scholarship"
     verbose_name_plural = "Scheme - Scholarships"
+
+class Translations(models.Model):
+  text = models.CharField(max_length=10000)
+  lang = models.CharField(max_length=10)
+  tran = models.CharField(max_length=10000)
+  class Meta:
+    verbose_name = "Translation"
+    verbose_name_plural = "Translations"

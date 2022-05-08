@@ -10,10 +10,4 @@ def print_date(dt):
 @register.simple_tag
 def translate(request, text):
   lan = request.COOKIES.get('lan','en') 
-  try:
-    if lan=="en":
-      return trans[text][0]
-    elif lan=="hi":
-      return trans[text][1]
-  except:
-    return text
+  return trans(text,lan)

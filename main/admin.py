@@ -16,3 +16,8 @@ class SchemeScholarshipsAdmin(admin.ModelAdmin):
   list_display = ['id','name','closing_date','guideline','faq']
 
 admin.site.register(SchemeScholarships,SchemeScholarshipsAdmin)
+
+class TranslationsAdmin(admin.ModelAdmin):
+  list_display = ['id','text','lang',"tran"]
+
+admin.site.register(Translations,TranslationsAdmin)

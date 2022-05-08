@@ -1,17 +1,18 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load filters %}
 
 {% block head %}
     <title>About | Sahayata Portal</title>
 {% endblock %}
 
 {% block content %}
-<div class="text-white ms-2"><h5>This website (sahayata portal) is a  solution for citizens across various sectors - students, working class, pensioners, unorganised labourers etc. The portal is supposed to make the citizens aware of various government schemes catered for them, scholarships for students, requirements for labour tenders. This is the place where the information from various portals is integrated and provided to you in the best way ppossible. The portal is dynamic and updates itself automatically along with the various portals integrated.</h5>
-<h5>List of portals integrated:
+<div class="text-white ms-2"><h5>{% translate request "This website (sahayata portal) is a  solution for citizens across various sectors - students, working class, pensioners, unorganised labourers etc. The portal is supposed to make the citizens aware of various government schemes catered for them, scholarships for students, requirements for labour tenders. This is the place where the information from various portals is integrated and provided to you in the best way ppossible. The portal is dynamic and updates itself automatically along with the various portals integrated." %}</h5>
+<h5>{% translate request "List of portals integrated:" %}
 <ul>
-    <li>National Scholarship Portal: <a href="https://scholarships.gov.in/" target="_blank">https://scholarships.gov.in/</a></li>
-    <li>E-Shram portal: <a href="https://eshram.gov.in/" target="_blank">https://eshram.gov.in/</a></li> 
-    <li>Ministry of Women and Child Development: <a href="https://wcd.nic.in/" target="_blank">https://wcd.nic.in/</a></li>
+    <li>{% translate request "National Scholarship Portal:" %} <a href="https://scholarships.gov.in/" target="_blank">https://scholarships.gov.in/</a></li>
+    <li>{% translate request "E-Shram portal:" %} <a href="https://eshram.gov.in/" target="_blank">https://eshram.gov.in/</a></li> 
+    <li>{% translate request "Ministry of Women and Child Development:" %} <a href="https://wcd.nic.in/" target="_blank">https://wcd.nic.in/</a></li>
 </ul>
 </h5></div>
 

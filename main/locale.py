@@ -1,4 +1,6 @@
-trans = {
+from main.api import Translate
+
+manual = {
   "Subscribe to our mails":["Subscribe to our mails" , "हमारे मेल की सदस्यता लें"],
   "Welcome to Sahayata Portal":["Welcome to Sahayata Portal","सहायता पोर्टल में आपका स्वागत है"],
   "Click on the appropriate category:":["Click on the appropriate category:","उपयुक्त श्रेणी पर क्लिक करें:"],
@@ -16,3 +18,16 @@ trans = {
   "International Scholarships":["International Scholarships","अंतर्राष्ट्रीय छात्रवृत्ति"],
   "All Rights Reserved © CP301_G1 2022":["All Rights Reserved © CP301_G1 2022","सर्वाधिकार सुरक्षित © CP301_G1 2022"]
 }
+
+def trans(text, lang):
+  try:
+    temp = manual[text]
+    if lang=="en":
+      return temp[0]
+    elif lang=="hi":
+      return temp[1]
+  except:
+    pass
+  
+
+  return Translate(text, lang)
