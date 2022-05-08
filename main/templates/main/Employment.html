@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load filters %}
 
 {% block head %}
     <title>Employment Schemes | Sahayata Portal</title>
@@ -40,7 +41,7 @@
 </div>
 <br>
 <div>
-  <h1 style="color: aliceblue; font-family: Helvetica Neue; text-align: center;">Employment Schemes</h1>
+  <h1 style="color: aliceblue; font-family: Helvetica Neue; text-align: center;">{% translate request "Employment Schemes" %}</h1>
 </div>
 <div style="color:white">
 {% autoescape off %}
@@ -70,7 +71,7 @@
           </div>
         </div>
         <div class="row">
-          <button onclick="playelem('#{{forloop.counter}}');" class="btn btn-outline-light btn-sm m-auto" style="width: 100px;">SPEAK <i class="fa-solid fa-volume-high"></i></button>
+          <button onclick="playelem('#{{forloop.counter}}');" class="btn btn-outline-light btn-sm m-auto" style="width: 100px;">{% translate request "SPEAK" %} <i class="fa-solid fa-volume-high"></i></button>
         </div>
       </div>
     </div>

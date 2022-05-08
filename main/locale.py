@@ -16,7 +16,10 @@ manual = {
   "Home":["Home","घर"],
   "National Scholarships":["National Scholarships","राष्ट्रीय छात्रवृत्ति"],
   "International Scholarships":["International Scholarships","अंतर्राष्ट्रीय छात्रवृत्ति"],
-  "All Rights Reserved © CP301_G1 2022":["All Rights Reserved © CP301_G1 2022","सर्वाधिकार सुरक्षित © CP301_G1 2022"]
+  "All Rights Reserved © CP301_G1 2022":["All Rights Reserved © CP301_G1 2022","सर्वाधिकार सुरक्षित © CP301_G1 2022"],
+  "Click Here":["Click Here","यहाँ क्लिक करें"],
+  "SPEAK":["SPEAK","बोलना"],
+  "Click here to know more":["Click here to know more","अधिक जानकारी के लिए यहां क्लिक करें"],
 }
 
 def trans(text, lang):

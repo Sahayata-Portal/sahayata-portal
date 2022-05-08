@@ -15,6 +15,7 @@ from django.http import HttpResponseRedirect
 from main.fetches import *
 import random
 from django.template.loader import render_to_string
+from main.api import *
 
 # Create your views here.
 def HomePage(request):
@@ -39,6 +40,16 @@ def Scholarships(request):
 
   schemes = getScholarships()
 
+  lan = request.COOKIES.get('lan','en') 
+  x = []
+  for i in range(len(schemes)):
+    x.append(schemes[i]['name'])
+  x=TranslateList(x,lan)
+  c=0
+  for i in range(len(schemes)):
+    schemes[i]['name']=x[c]
+    c = c+1
+
   return render(request,"main/scholarships.html",{"data":schemes})
 
 def about(request):
@@ -49,12 +60,69 @@ def about(request):
 def Employment(request):
 
   schemes = getEmployment()
+
+  lan = request.COOKIES.get('lan','en') 
+  x = []
+  for i in range(len(schemes)):
+    x.append(schemes[i]['title'])
+    x.append(schemes[i]['head1'])
+    for j in range(len(schemes[i]['desc1'])):
+      x.append(schemes[i]['desc1'][j])
+    x.append(schemes[i]['head2'])
+    for j in range(len(schemes[i]['desc2'])):
+      x.append(schemes[i]['desc2'][j])
+  x=TranslateList(x,lan)
+  c=0
+  for i in range(len(schemes)):
+    schemes[i]['title']=x[c]
+    c = c+1
+    schemes[i]['head1']=x[c]
+    c = c+1
+    for j in range(len(schemes[i]['desc1'])):
+      schemes[i]['desc1'][j]=x[c]
+      c=c+1
+    schemes[i]['head2']=x[c]
+    c = c+1
+    for j in range(len(schemes[i]['desc2'])):
+      schemes[i]['desc2'][j]=x[c]
+      c=c+1
   
   return render(request,"main/Employment.html",{"data":schemes})
 
 def social(request):
 
   schemes = getSocial()
+  
+  lan = request.COOKIES.get('lan','en') 
+  x = []
+  for i in range(len(schemes)):
+    x.append(schemes[i]['title'])
+    for j in range(len(schemes[i]['desc1'])):
+      x.append(schemes[i]['desc1'][j])
+    x.append(schemes[i]['head2'])
+    for j in range(len(schemes[i]['desc2'])):
+      x.append(schemes[i]['desc2'][j])
+    x.append(schemes[i]['head3'])
+    for j in range(len(schemes[i]['desc3'])):
+      x.append(schemes[i]['desc3'][j])
+  x=TranslateList(x,lan)
+  c=0
+  for i in range(len(schemes)):
+    schemes[i]['title']=x[c]
+    c = c+1
+    for j in range(len(schemes[i]['desc1'])):
+      schemes[i]['desc1'][j]=x[c]
+      c=c+1
+    schemes[i]['head2']=x[c]
+    c = c+1
+    for j in range(len(schemes[i]['desc2'])):
+      schemes[i]['desc2'][j]=x[c]
+      c=c+1
+    schemes[i]['head3']=x[c]
+    c = c+1
+    for j in range(len(schemes[i]['desc3'])):
+      schemes[i]['desc3'][j]=x[c]
+      c=c+1
 
   return render(request,"main/social.html",{"data":schemes})
 
@@ -66,11 +134,14 @@ def TextToVoice(request):
   text = soup.get_text()
   text = quote(text)
 
+  # print(translate_text_with_model("CENTRALLY SPONSORED PREMATRIC SCHOLARSHIP SCHEME FOR ST STUDENTS(CLASS IX,X)-ANDAMAN AND NICOBAR"))
+
   url = "https://voicerss-text-to-speech.p.rapidapi.com/"
   querystring = {"key":os.environ.get("TEXT_TO_SPEECH_KEY")}
 
   payload = "src="+text
-  payload = payload + "&hl=en-us&v=Mary&r=0&c=mp3&f=44khz_16bit_stereo"
+  payload = payload + "&hl=hi-in&v=Kabir&r=0&c=mp3&f=44khz_16bit_stereo"
+  # payload = payload + "&hl=en-us&v=Mary&r=0&c=mp3&f=44khz_16bit_stereo"
 
   headers = {
     'content-type': "application/x-www-form-urlencoded",
@@ -165,5 +236,15 @@ def Update(request, schemetype):
 def Women(request):
   
   schemes = getWomen()
+
+  lan = request.COOKIES.get('lan','en') 
+  x = []
+  for i in range(len(schemes)):
+    x.append(schemes[i][0])
+  x=TranslateList(x,lan)
+  c=0
+  for i in range(len(schemes)):
+    schemes[i][0]=x[c]
+    c = c+1
 
   return render(request,"main/Women.html",{"data":schemes})

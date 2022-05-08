@@ -158,7 +158,7 @@ def getSocial():
     try:
       temp['desc1'] = [li.get_text(strip=True) for li in i.find("div", class_="col-md-12").find("div", class_="about-li").find_all("li")]
     except:
-      temp['desc1'] = None
+      temp['desc1'] = ''
 
     schemes.append(temp)
   

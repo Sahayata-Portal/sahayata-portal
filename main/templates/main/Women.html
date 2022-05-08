@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load filters %}
 
 {% block head %}
     <title>Schemes for women | Sahayata Portal</title>
@@ -7,20 +8,15 @@
 
 {% block content %}
 <div>
-  <h1 style="color: aliceblue; font-family: Helvetica Neue; text-align: center;">Welfare Schemes for Women</h1>
+  <h1 style="color: aliceblue; font-family: Helvetica Neue; text-align: center;">{% translate request "Welfare Schemes for Women" %}</h1>
 </div>
 {% autoescape off %}
 <table class="text-white">
   {% for i in data %}
-    <!--<div class="text-white" style="border: 1px solid white; margin:20px; padding: 5px">
-      <h5>{{i.0}}</h5>
-      <a href="{{i.1}}">Link</a>
-      <button id="play">SPEAK</button>
-    </div>-->
      <tr  style="border: 2px solid gray;border-radius: 10px; margin:25px; padding: 5px; height: 100px">
         <td class="ps-2" style="width:70%" scope="row" id="{{forloop.counter}}_name">{{i.0}}</td>
-        <td style="width:20%"><a href="{{i.1}}" class="btn btn-outline-warning btn-sm " role="button" aria-pressed="true" id="{{forloop.counter}}_but" target="_blank">Click here to know more</a></td>
-        <td style="width:10%"><button onclick="playcustom('The scheme name is ','#{{forloop.counter}}_name','. ','#{{forloop.counter}}_but');" class="btn btn-outline-light">SPEAK <i class="fa-solid fa-volume-high"></i></button></td>
+        <td style="width:20%"><a href="{{i.1}}" class="btn btn-outline-warning btn-sm " role="button" aria-pressed="true" id="{{forloop.counter}}_but" target="_blank">{% translate request "Click here to know more" %}</a></td>
+        <td style="width:10%"><button onclick="playcustom('The scheme name is ','#{{forloop.counter}}_name','. ','#{{forloop.counter}}_but');" class="btn btn-outline-light">{% translate request "SPEAK" %} <i class="fa-solid fa-volume-high"></i></button></td>
       </tr>
 {% endfor %}
 {% endautoescape %}
