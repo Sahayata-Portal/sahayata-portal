@@ -1,24 +1,14 @@
 from django.shortcuts import render, HttpResponse
 from main.models import *
-import requests
-from bs4 import BeautifulSoup
-from datetime import datetime
-from django.views.decorators.csrf import csrf_exempt
-import json
-from urllib.parse import quote
-import os
-import ssl,urllib
 from django.shortcuts import render
 from .forms import *
-from django.contrib import messages
-from django.http import HttpResponseRedirect
 from main.fetches import *
 import random
 from django.template.loader import render_to_string
 from main.api import *
 
-# Create your views here.
 def HomePage(request):
+
   return render(request,"main/home.html")
 
 
@@ -26,13 +16,10 @@ def SchemePage(request):
 
   schemes = Scheme.objects.all()
 
-
-  
   return render(request,"main/schemes.html",{"schemes":schemes})
 
 def Ourteam(request):
 
-  
   return render(request,"main/ourteam.html")
 
 
@@ -53,7 +40,6 @@ def Scholarships(request):
   return render(request,"main/scholarships.html",{"data":schemes})
 
 def about(request):
-
   
   return render(request,"main/about.html")
 
@@ -125,35 +111,6 @@ def social(request):
       c=c+1
 
   return render(request,"main/social.html",{"data":schemes})
-
-@csrf_exempt
-def TextToVoice(request):
-  text = json.loads(request.body).get("text")
-
-  soup = BeautifulSoup(text, "html.parser")
-  text = soup.get_text()
-  text = quote(text)
-
-  # print(translate_text_with_model("CENTRALLY SPONSORED PREMATRIC SCHOLARSHIP SCHEME FOR ST STUDENTS(CLASS IX,X)-ANDAMAN AND NICOBAR"))
-
-  url = "https://voicerss-text-to-speech.p.rapidapi.com/"
-  querystring = {"key":os.environ.get("TEXT_TO_SPEECH_KEY")}
-
-  payload = "src="+text
-  payload = payload + "&hl=hi-in&v=Kabir&r=0&c=mp3&f=44khz_16bit_stereo"
-  # payload = payload + "&hl=en-us&v=Mary&r=0&c=mp3&f=44khz_16bit_stereo"
-
-  headers = {
-    'content-type': "application/x-www-form-urlencoded",
-    'x-rapidapi-host': "voicerss-text-to-speech.p.rapidapi.com",
-    'x-rapidapi-key': os.environ.get('X_RAPIDAPI_KEY')
-  }
-
-  response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
-
-  voice = response
-
-  return HttpResponse(voice, content_type='audio/mp3')
 
 def subscribe(request):
   MSG=''
@@ -232,7 +189,6 @@ def Update(request, schemetype):
 
   return HttpResponse("OK")
 
-  # Create your views here.
 def Women(request):
   
   schemes = getWomen()

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include,path
-from main import views
+from main import views,api
 
 urlpatterns = [
     path('', views.HomePage, name='home'),
@@ -25,7 +25,7 @@ urlpatterns = [
     path('about', views.about, name='about'),
     path('Employment',views.Employment,name='Employment'),
     path('social',views.social,name='social'),
-    path('texttovoice',views.TextToVoice,name='texttovoice'),
+    path('texttovoice',api.TextToVoice,name='texttovoice'),
     path('subscribe',views.subscribe,name='subscribe'),
     path('unsubscribe/<str:uuid>',views.Unsubscribe,name='unsubscribe'),
     path('update/<str:schemetype>',views.Update, name='update'),

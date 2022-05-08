@@ -2,6 +2,10 @@ import requests
 import json
 import os
 from main.models import Translations
+from django.views.decorators.csrf import csrf_exempt
+from bs4 import BeautifulSoup
+from urllib.parse import quote
+from django.shortcuts import HttpResponse
 
 def Translate(data, lan='en'):
 
@@ -49,3 +53,37 @@ def TranslateList(data, lan='en'):
     translated[i].strip()
 
   return translated
+
+def Voice(data, lan='en'):
+  url = "https://voicerss-text-to-speech.p.rapidapi.com/"
+  querystring = {"key":os.environ.get("TEXT_TO_SPEECH_KEY")}
+
+  payload = "src="+data
+  
+  if lan=='hi':
+    payload = payload + "&hl=hi-in&v=Kabir&r=1&c=mp3&f=44khz_16bit_stereo"
+  else:
+    payload = payload + "&hl=en-us&v=Mary&r=0&c=mp3&f=44khz_16bit_stereo"
+
+  headers = {
+    'content-type': "application/x-www-form-urlencoded",
+    'x-rapidapi-host': "voicerss-text-to-speech.p.rapidapi.com",
+    'x-rapidapi-key': os.environ.get('X_RAPIDAPI_KEY')
+  }
+
+  response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
+
+  return response
+
+@csrf_exempt
+def TextToVoice(request):
+  text = json.loads(request.body).get("text")
+
+  soup = BeautifulSoup(text, "html.parser")
+  text = soup.get_text()
+  text = quote(text)
+
+  lan = request.COOKIES.get('lan','en')
+  voice = Voice(text,lan)
+
+  return HttpResponse(voice, content_type='audio/mp3')
