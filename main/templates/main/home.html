@@ -1,4 +1,5 @@
 {% extends "main/base.html" %}
+{% load filters %}
 {% load static %}
 
 {% block head %}
@@ -10,7 +11,8 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col title text-white">
-            Welcome to Sahayata Portal
+            {% translate request "Welcome to Sahayata Portal" %}
+            
         </div>
     </div>
     <div class="row mt-3">
@@ -30,7 +32,7 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col d-grid mb-3 mt-3 d-md-flex justify-content-md-center">
-                <a class="btn btn-warning btn-lg" href="{%url 'subscribe'%}" role="button">Subscribe to our mails.</a>
+                <a class="btn btn-warning btn-lg" href="{%url 'subscribe'%}" role="button">{% translate request "Subscribe to our mails" %}</a>
             </div>
         </div>
     </div>
@@ -38,26 +40,26 @@
         <div class="row mt-3 " style="max-width: fit-content; margin: auto;">
         <div class="col p-3 justify-content-md-center" style="border: 2px solid grey; border-radius: 20px;">
                 <div class="row ms-1 text-white h5 justify-content-md-center">
-                    Click on the appropriate category:
+                    {% translate request "Click on the appropriate category:" %}
                 </div>
                 <div class="row mt-3 text-white">
                     <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
-                        <a href="{%url 'scholarships'%}" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Students</a>
+                        <a href="{%url 'scholarships'%}" class="btn btn-primary btn-lg" role="button" aria-pressed="true">{% translate request "Students" %}</a>
                     </div>
                     <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
                         <div class="btn-group" role="group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-lg dropdown-toggle"
                                 data-bs-toggle="dropdown" aria-expanded="false" aria-pressed="true">
-                                Labourers
+                                {% translate request "Labourers" %}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <li><a class="dropdown-item" href="{%url 'Employment'%}">Employment Schemes</a></li>
-                                <li><a class="dropdown-item" href="{%url 'social'%}">Social Welfare Schemes</a></li>
+                                <li><a class="dropdown-item" href="{%url 'Employment'%}">{% translate request "Employment Schemes" %}</a></li>
+                                <li><a class="dropdown-item" href="{%url 'social'%}">{% translate request "Social Welfare Schemes" %}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col d-grid mt-3 d-md-flex justify-content-md-center">
-                        <a href="{%url 'Women'%}" class="btn btn-primary btn-lg " role="button" aria-pressed="true">Women</a>
+                        <a href="{%url 'Women'%}" class="btn btn-primary btn-lg " role="button" aria-pressed="true">{% translate request "Women" %}</a>
                     </div>
                 </div>
             </div>

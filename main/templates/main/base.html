@@ -1,4 +1,5 @@
 {% load static %}
+{% load filters %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@
 </head>
 
 <body class="bg-dark">
-    <div class="hide"><div class="text">Loading...</div></div>
+    <div class="hide"><div class="text">{% translate request "" %}Loading...</div></div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="{% static 'main/images/logo.png' %}" alt="logo" width="60px"></a>
@@ -29,42 +30,51 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto ">
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'home'%}">Home</a>
+                        <a class="nav-link" href="{%url 'home'%}">{% translate request "Home" %}</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Students
+                            {% translate request "Students" %}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="{%url 'scholarships'%}">National Scholarships</a></li>
-                          <li><a class="dropdown-item" href="#">International Scholarships</a></li>
+                          <li><a class="dropdown-item" href="{%url 'scholarships'%}">{% translate request "National Scholarships" %}</a></li>
+                          <li><a class="dropdown-item" href="#">{% translate request "International Scholarships" %}</a></li>
                         </ul>
                       </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Labourers
+                            {% translate request "Labourers" %}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="{%url 'Employment'%}">Employment Schemes</a></li>
-                          <li><a class="dropdown-item" href="{%url 'social'%}">Social Welfare Schemes</a></li>
+                          <li><a class="dropdown-item" href="{%url 'Employment'%}">{% translate request "Employment Schemes" %}</a></li>
+                          <li><a class="dropdown-item" href="{%url 'social'%}">{% translate request "Social Welfare Schemes" %}</a></li>
                           
                         </ul>
                       </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'Women'%}">Women</a>
+                        <a class="nav-link" href="{%url 'Women'%}">{% translate request "Women" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'about'%}">About</a>
+                        <a class="nav-link" href="{%url 'about'%}">{% translate request "About" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'ourteam'%}">Our Team</a>
+                        <a class="nav-link" href="{%url 'ourteam'%}">{% translate request "Our Team" %}</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% translate request "Language" %}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item lan lan-en">English</a></li>
+                            <li><a class="dropdown-item lan lan-hi">हिन्दी</a></li>
+                        </ul>
                     </li>
                     <!-- <li>
                         <a href="#" class="nav-link">Profile</a>
                     </li> -->
                 </ul>
             </div>
-            <a class="btn btn-primary btn-sm float-right" href="{%url 'subscribe'%}" role="button">Subscribe for all latest updates!</a>
+            <a class="btn btn-primary btn-sm float-right" href="{%url 'subscribe'%}" role="button">{% translate request "Subscribe for all latest updates!" %}</a>
         </div>
     </nav>
     <div class="content-wrap">
@@ -78,7 +88,7 @@
     <br>
     <br>
     <br> -->
-    <footer class="text-white bg-danger">All Rights Reserved &copy; CP301_G1 2022</footer>
+    <footer class="text-white bg-danger">{% translate request "All Rights Reserved © CP301_G1 2022" %}</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -123,6 +133,17 @@
                 })
             });
         }
+    </script>
+
+    <script>
+        $('.lan-hi').click(function(){
+            document.cookie = "lan=hi"
+            location.reload()
+        });
+        $('.lan-en').click(function(){
+            document.cookie = "lan=en"
+            location.reload()
+        });
     </script>
         
     {% block footer %}
