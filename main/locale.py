@@ -21,6 +21,7 @@ manual = {
   "SPEAK":["SPEAK","बोलना"],
   "Click here to know more":["Click here to know more","अधिक जानकारी के लिए यहां क्लिक करें"],
   "Loading":["Loading","प्रतीक्षा करें"],
+  "OTP":["OTP","ओटीपी"],
 }
 
 def trans(text, lang):
