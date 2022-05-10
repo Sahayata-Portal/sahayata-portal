@@ -20,6 +20,7 @@ manual = {
   "Click Here":["Click Here","यहाँ क्लिक करें"],
   "SPEAK":["SPEAK","बोलना"],
   "Click here to know more":["Click here to know more","अधिक जानकारी के लिए यहां क्लिक करें"],
+  "Loading":["Loading","प्रतीक्षा करें"],
 }
 
 def trans(text, lang):

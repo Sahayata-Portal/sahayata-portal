@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load filters %}
 
 {% block head %}
     <title>Subscribe | Sahayata Portal</title>
@@ -8,7 +9,7 @@
 {% block content %}
 <br>
 <div class="text-warning h5" style="text-align: center;">
-    {{msg}}
+    {% translate request msg %}
 </div>
 <br>
 <style>
@@ -87,7 +88,7 @@
 </style>
 <div class="form">
     <div class="form-head">
-        {{form_head}}
+        {% translate request form_head %}
     </div>
     <br>
     <form action = "" method = "post" class="text-white">
@@ -102,16 +103,16 @@
 
  
         <div class="check">
-            {{i}}<label for="id_{{i.name}}" class="label">{{i.name}}</label>
+            {{i}}<label for="id_{{i.name}}" class="label">{% translate request i.name %}</label>
         </div>
         <br>
         {% else %}
-        <font class="label">{{i.name}}</font><br>{{i}}<br><br>
+        <font class="label">{% translate request i.name %}</font><br>{{i}}<br><br>
         <!-- <br><br> -->
         {% endif %}
         
         {% endfor %}
-        <input type="submit" class="btn btn-success" value="Submit">
+        <input type="submit" class="btn btn-success" value="{% translate request 'Submit' %}">
     </form>
 </div>
 {% endblock %}
