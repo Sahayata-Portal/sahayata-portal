@@ -3,13 +3,13 @@
 {% load filters %}
 
 {% block head %}
-    <title>Subscribe | Sahayata Portal</title>
+    <title>{% translate request "Subscribe | Sahayata Portal" %}</title>
 {% endblock %}
 
 {% block content %}
 <br>
 <div class="text-warning h5" style="text-align: center;">
-    {% translate request msg %}
+    {{msg}}
 </div>
 <br>
 <style>

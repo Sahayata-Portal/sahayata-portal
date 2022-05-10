@@ -148,7 +148,7 @@ def subscribe(request):
         else:
           tries = temp.Tries
           if tries==2:
-            MSG = 'Incorrect OTP entered 3 times !'
+            MSG = translate(request,'Incorrect OTP entered 3 times !')
           else:
             if lan=='hi':
               MSG = 'आपने गलत ओटीपी डाला है। आपके पास ' + str(2-tries) + ' कोशिशें बाकी हैं।'
@@ -169,12 +169,12 @@ def subscribe(request):
         thisform = SubsForm(request.POST, instance=temp)
         thisform.save()
         MailForm.objects.filter(Email=email).filter(OTP=otp).update(Active=True)
-        MSG = 'Data updated'
+        MSG = translate(request,'Data updated')
       else:
-        MSG = 'Error updating data, please try again'
+        MSG = translate(request,'Error updating data, please try again')
 
     else:
-      MSG='Invalid form submission !'
+      MSG=translate(request,'Invalid form submission !')
 
   return render(request, 'main/subscribe.html', {'form':form, 'msg':MSG, 'type':Type, 'form_head':'Subscribe to email notifications'})
 

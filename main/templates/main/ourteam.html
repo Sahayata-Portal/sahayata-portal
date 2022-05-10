@@ -1,8 +1,9 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load filters %}
 
 {% block head %}
-    <title>Our Team | Sahayata Portal</title>
+    <title>{% translate request "Our Team | Sahayata Portal" %}</title>
 {% endblock %}
 
 {% block content %}

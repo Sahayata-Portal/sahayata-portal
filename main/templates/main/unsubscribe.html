@@ -1,13 +1,14 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load filters %}
 
 {% block head %}
-    <title>Unsubscribe | Sahayata Portal</title>
+    <title>{% translate request "Unsubscribe | Sahayata Portal" %}</title>
 {% endblock %}
 
 {% block content %}
 <div class="text-warning h5" style="text-align: center;">
-    {{msg}}
+    {% translate request msg %}
 </div>
 {% if ask %}
 <form action = "" method = "post" class="text-white ms-3" style="text-align: center">
