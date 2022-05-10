@@ -30,7 +30,11 @@
         <td id="{{forloop.counter}}_date" class="small_col  {{i.color}}">{% print_date i.closing_date %}</td>
         <td class="small_col"><a href="{{i.guideline}}" class="btn btn-outline-warning btn-sm" role="button" aria-pressed="true" target="_blank">{% translate request "Click Here" %}</a></td>
         <td class="small_col"><a href="{{i.faq}}" class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true" target="_blank">{% translate request "Click Here" %}</a></td>
+        {% if lan == 'en' %}
         <td class="small_col"><button onclick="playcustom('The scheme name is ','#{{forloop.counter}}_name',' which is closing on ','#{{forloop.counter}}_date','. Click here for opening guidelines and click here for knowing FAQs.');" class="btn btn-outline-light btn-sm" >{% translate request "SPEAK" %} <i class="fa-solid fa-volume-high"></i></button></td>
+        {% elif lan == 'hi' %}
+        <td class="small_col"><button onclick="playcustom('इस योजना का नाम है ','#{{forloop.counter}}_name',' जो दिनांक ','#{{forloop.counter}}_date',' को समाप्त हो रही है। दिशानिर्देश खोलने के लिए यहां क्लिक करें और अक्सर पूछे जाने वाले प्रश्नों को जानने के लिए यहां क्लिक करें।');" class="btn btn-outline-light btn-sm" >{% translate request "SPEAK" %} <i class="fa-solid fa-volume-high"></i></button></td>
+        {% endif %}
       </tr>
 {% endfor %}
 </tbody>

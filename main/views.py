@@ -37,7 +37,7 @@ def Scholarships(request):
     schemes[i]['name']=x[c]
     c = c+1
 
-  return render(request,"main/scholarships.html",{"data":schemes})
+  return render(request,"main/scholarships.html",{"data":schemes, "lan":lan})
 
 def about(request):
   
@@ -203,4 +203,4 @@ def Women(request):
     schemes[i][0]=x[c]
     c = c+1
 
-  return render(request,"main/Women.html",{"data":schemes})
+  return render(request,"main/Women.html",{"data":schemes, "lan":lan})
