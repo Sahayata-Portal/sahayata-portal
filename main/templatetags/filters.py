@@ -11,3 +11,8 @@ def print_date(dt):
 def translate(request, text):
   lan = request.COOKIES.get('lan','en') 
   return trans(text,lan)
+
+@register.simple_tag
+def get_url(request):
+  url = request.scheme + "://" + request.META['HTTP_HOST']
+  return url

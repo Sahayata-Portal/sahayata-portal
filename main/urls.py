@@ -31,4 +31,8 @@ urlpatterns = [
     path('unsubscribe/<str:uuid>',views.Unsubscribe,name='unsubscribe'),
     path('update/<str:schemetype>',views.Update, name='update'),
     path('Women',views.Women,name='Women'),
+    path('api/scholarships',api.Scholarship_API,name="scholarship_api"),
+    path('api/employment',api.Employment_API,name="employment_api"),
+    path('api/social',api.Social_API,name="social_api"),
+    path('api/women',api.Women_API,name="women_api"),
 ]

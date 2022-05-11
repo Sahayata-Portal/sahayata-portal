@@ -38,7 +38,7 @@ def getScholarships():
         "guideline":'https://scholarships.gov.in'+guideline.a.attrs['href'],
         "faq":'https://scholarships.gov.in'+faq.a.attrs['href'],
         "color":"text-green"if(closing_date.get_text(strip=True).split()[0]=="Open") else "text-red",
-        "closing_date_print":dt.strftime("%d-%b-%Y")})
+        "closing_date_print":dt.strftime("%d %b %Y")})
     except:
       pass
 
@@ -176,6 +176,7 @@ def getWomen():
 
   for i in var:
     name=i.find_all("a")[0]
-    schemes.append([name.get_text(strip=True),'https://wcd.nic.in'+name.attrs['href']])
+    schemes.append({"name":name.get_text(strip=True),
+    "link":'https://wcd.nic.in'+name.attrs['href']})
   
   return schemes

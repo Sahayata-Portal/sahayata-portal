@@ -211,11 +211,11 @@ def Women(request):
   lan = request.COOKIES.get('lan','en') 
   x = []
   for i in range(len(schemes)):
-    x.append(schemes[i][0])
+    x.append(schemes[i]['name'])
   x=TranslateList(x,lan)
   c=0
   for i in range(len(schemes)):
-    schemes[i][0]=x[c]
+    schemes[i]['name']=x[c]
     c = c+1
 
   return render(request,"main/Women.html",{"data":schemes, "lan":lan})

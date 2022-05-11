@@ -4,6 +4,14 @@
 
 {% block head %}
     <title>{% translate request "About | Sahayata Portal" %}</title>
+    <style>
+        a{
+            color: rgb(249, 255, 207);
+        }
+        a:hover{
+            color: rgb(254, 255, 246);
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -15,7 +23,7 @@
     </p>
     <br>
     <br>
-    <p>
+    <p style="font-size:1.1em;">
     {% translate request "List of portals integrated:" %}
     <ul style="font-size:1.1em">
     <li>{% translate request "National Scholarship Portal:" %} <a href="https://scholarships.gov.in/" target="_blank">https://scholarships.gov.in/</a></li>
@@ -23,6 +31,63 @@
     <li>{% translate request "Ministry of Women and Child Development:" %} <a href="https://wcd.nic.in/" target="_blank">https://wcd.nic.in/</a></li>
     </ul>
     </p>
+    <br>
+    <h4>APIs</h4>
+    <ul>
+        <table class="table text-white" style="vertical-align: middle;">
+            <tr><th>Type of scheme</th><th>Link</th><th>Structure of API</th></tr>
+            <tr>
+                <td>National Scholarships</td>
+                <td><a href="{% url 'scholarship_api' %}" target="_blank">{% get_url request %}{% url 'scholarship_api' %}</a></td>
+                <td>
+                    <ul style="list-style-type: disc;">
+                        <li><b>name</b> - Scheme Name</li>
+                        <li><b>closing_date</b> - Closing date of the scheme</li>
+                        <li><b>faq</b> - Link for the FAQ document</li>
+                        <li><b>guideline</b> - Link for the Guidelines document</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Employment Schemes</td>
+                <td><a href="{% url 'employment_api' %}" target="_blank">{% get_url request %}{% url 'employment_api' %}</a></td>
+                <td>
+                    <ul style="list-style-type: disc;">
+                        <li><b>title</b> - Scheme Title</li>
+                        <li><b>head1</b> - Heading 1</li>
+                        <li><b>desc1</b> - List of descriptions for heading 1</li>
+                        <li><b>head2</b> - Heading 2</li>
+                        <li><b>desc2</b> - List of descriptions for heading 2</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Social Welfare Schemes</td>
+                <td><a href="{% url 'social_api' %}" target="_blank">{% get_url request %}{% url 'social_api' %}</a></td>
+                <td>
+                    <ul style="list-style-type: disc;">
+                        <li><b>title</b> - Scheme Title</li>
+                        <li><b>desc1</b> - List of descriptions without any heading</li>
+                        <li><b>head2</b> - Heading 2</li>
+                        <li><b>desc2</b> - List of descriptions for heading 2</li>
+                        <li><b>head3</b> - Heading 3</li>
+                        <li><b>desc3</b> - List of descriptions for heading 3</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Schemes for Women</td>
+                <td><a href="{% url 'women_api' %}" target="_blank">{% get_url request %}{% url 'women_api' %}</a></td>
+                <td>
+                    <ul style="list-style-type: disc;">
+                        <li><b>name</b> - Scheme Name</li>
+                        <li><b>link</b> - List for the scheme details</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </ul>
+
 </div>
 
 {% endblock %}

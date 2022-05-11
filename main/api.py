@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from bs4 import BeautifulSoup
 from urllib.parse import quote
 from django.shortcuts import HttpResponse
+from main.fetches import *
 
 def Translate(data, lan='en'):
 
@@ -87,3 +88,27 @@ def TextToVoice(request):
   voice = Voice(text,lan)
 
   return HttpResponse(voice, content_type='audio/mp3')
+
+def Scholarship_API(request):
+  data = getScholarships()
+  for i in data:
+    i.pop('color', None)
+    i.pop('closing_date_print', None)
+    i['closing_date'] = i['closing_date'].strftime("%d %b %Y")
+  data = json.dumps(data, indent=4, sort_keys=True, default=str)
+  return HttpResponse(data, content_type="application/json")
+
+def Employment_API(request):
+  data = getEmployment()
+  data = json.dumps(data, indent=4, sort_keys=True, default=str)
+  return HttpResponse(data, content_type="application/json")
+
+def Social_API(request):
+  data = getSocial()
+  data = json.dumps(data, indent=4, sort_keys=True, default=str)
+  return HttpResponse(data, content_type="application/json")
+
+def Women_API(request):
+  data = getWomen()
+  data = json.dumps(data, indent=4, sort_keys=True, default=str)
+  return HttpResponse(data, content_type="application/json")
