@@ -20,6 +20,7 @@ from main import views,api
 urlpatterns = [
     path('', views.HomePage, name='home'),
     path('scholarships', views.Scholarships, name='scholarships'),
+    path('international', views.international, name='international'),
     path('schemes', views.SchemePage, name='schemes'),
     path('ourteam', views.Ourteam, name='ourteam'),
     path('about', views.about, name='about'),

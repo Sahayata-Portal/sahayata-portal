@@ -40,6 +40,12 @@ def Scholarships(request):
 
   return render(request,"main/scholarships.html",{"data":schemes, "lan":lan})
 
+def international(request):
+
+  schemes = getScholarships()
+
+  return render(request,"main/international.html",{"data":schemes})
+
 def about(request):
   
   return render(request,"main/about.html")
