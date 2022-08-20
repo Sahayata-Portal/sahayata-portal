@@ -18,16 +18,16 @@ def getScholarships():
 
   soup = BeautifulSoup(data, "html.parser")
 
-  var = soup.find_all("div", class_="dotHead")
+  var = soup.find_all("div", class_="table-responsive")
 
   schemes = []
 
   for i in var:
     try:
-      name = i.find_next_sibling("div")
-      closing_date = name.find_next_sibling("div")
-      guideline = closing_date.find_next_sibling("div").find_next_sibling("div").find_next_sibling("div")
-      faq = guideline.find_next_sibling("div")
+      name = i.findChildren("table")[0].findChildren("td")[0]
+      closing_date = name.find_next_sibling("td")
+      guideline = closing_date.find_next_sibling("td").find_next_sibling("td").find_next_sibling("td")
+      faq = guideline.find_next_sibling("td")
 
       if name.get_text(strip=True)!="":
         
