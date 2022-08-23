@@ -45,11 +45,11 @@ def Translate(data, lan='en'):
 def TranslateList(data, lan='en'):
   text = ''
   for i in data:
-    text = text + i + "   ###\n###   "
+    text = text + i + "       \n       "
 
   translated = Translate(text, lan)
 
-  translated = translated.split("###\n###")[:-1]
+  translated = translated.split("\n")[:-1]
   for i in range(len(translated)):
     translated[i].strip()
 
