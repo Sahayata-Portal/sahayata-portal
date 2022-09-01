@@ -26,7 +26,7 @@ def getScholarships():
     try:
       name = i.findChildren("table")[0].findChildren("td")[0]
       closing_date = name.find_next_sibling("td")
-      guideline = closing_date.find_next_sibling("td").find_next_sibling("td").find_next_sibling("td")
+      guideline = closing_date.find_next_sibling("td").find_next_sibling("td").find_next_sibling("td").find_next_sibling("td")
       faq = guideline.find_next_sibling("td")
 
       if name.get_text(strip=True)!="":
